@@ -1,0 +1,28 @@
+#!/bin/bash
+echo "[Backup fstab]"
+cp /etc/fstab /etc/fstab.backup
+echo "[Mount fs]"
+declare -a mount_points=("/data" "/log")
+declare -a device_names=("/dev/sdb" "/dev/sdc")
+arraylength=$${#mount_points[@]}
+for (( i=0; i<$${arraylength}; i++ ));
+do
+  echo "[Create $${mount_points[$i]} Director]"
+  mkdir -p $${mount_points[$i]}
+  echo "[Mount $${device_names[$i]} Device]"
+  mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard $${device_names[$i]}
+  mount -o discard,defaults $${device_names[$i]} $${mount_points[$i]}
+  echo "[Add $${device_names[$i]} to fstab]"
+  echo UUID=`blkid -s UUID -o value $${device_names[$i]}` $${mount_points[$i]} ext4 discard,defaults,noatime,nofail 0 2 | sudo tee -a /etc/fstab
+done
+echo "[Create Data Directory]"
+mkdir -p ${db_datafiles_path}
+chown -R root:root ${db_datafiles_path}
+
+
+
+
+
+
+
+

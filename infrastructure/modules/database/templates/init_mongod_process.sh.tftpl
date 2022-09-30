@@ -1,0 +1,28 @@
+#!/bin/bash
+initiate_rs="`(/sbin/ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)`:${default_port}"
+
+systemctl daemon-reload
+systemctl start mongod 
+
+while true; do
+    if [[ -f ${db_logfile_path} ]]
+    then
+        break
+    else 
+        systemctl start mongod
+    fi 
+    sleep 10
+done
+
+if [[ "${ip_addr_1}" == "$initiate_rs"  ]]
+then
+    echo "Initialization of the replica set!" 
+    /bin/mongosh localhost:${default_port}/local /tmp/${repl_init}
+fi
+
+
+
+
+
+
+

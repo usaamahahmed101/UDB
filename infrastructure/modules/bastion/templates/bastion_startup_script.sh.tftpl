@@ -1,0 +1,9 @@
+while [[ ! -f /home/${admin_user}/.ssh/authorized_keys ]]
+do
+    sleep 10
+    echo "Sleeping 10 seconds till user is created by the gce instance..." >> /var/log/startup.log
+done
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCVkl6w+JRCDpQTVrlh8WcSh3sHFWFONax4TwPA0sDH9cWFGIyAHUXOLubEACs79oecxLue9adGKc/tSchcqbZKdR+rbmY9gJP1tai5DARlKZxbEyZJSBzpy1ksJdO6K0CjzVIFj1RsbyDvbraeyaOthcLESgr2vOlJwTr47Dn0zHH/MnFF1/BxXhZgY+ARrHm/+4ARbmzDLPM8g2mxKhwhlGb/I0ycSE+NeHakVpxO+BrSLC1TPl0Npy7MEi70VojByTEOsIp1dqE2Ab4dDgnvTBcd9hm+cF7ZoX14pJwO2es3E1D1KLWbHkIfNwXu/jA0yxxx+IG6Afku2cZNVqbZPhKU/DI1WkZrBBpHUH32GrBvzmHjv9RkE6lckiK1juEOLp33Gk0xaQAXOH9T5WFzaTnVlCQBywVnIKyuFnWjJxvvGKCwsfpEr6cf/JJ8IG1dGvOxrI0VvFbp2fjas3Zt0swjfOmnMrJMfxUDWIrnuRewzDwAGLdy6TJjv/weLAM= usaamahahmed@Usaamahs-iMac.lan" >> /home/${admin_user}/.ssh/authorized_keys 
+chown -R ${admin_user}:${admin_user} /home/${admin_user}; chmod 700 /home/${admin_user}/.ssh; chmod 644 /home/${admin_user}/.ssh/authorized_keys ;
+echo "Changed permissions on the authorized keys for ensuring read access" >> /var/log/startup.log
+

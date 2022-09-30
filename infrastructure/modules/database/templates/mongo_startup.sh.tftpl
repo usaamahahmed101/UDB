@@ -1,0 +1,11 @@
+#!/bin/bash
+cat <<EOF > /tmp/startup.sh
+${download_init_conf}
+echo "Start running mongo config scripts!"
+/tmp/install_required_packages.sh
+/tmp/install_mongo.sh
+/tmp/install_data_disk.sh
+/tmp/init_mongod_process.sh
+EOF
+chmod 755 /tmp/startup.sh
+./tmp/startup.sh

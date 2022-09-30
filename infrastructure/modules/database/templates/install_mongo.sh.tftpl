@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "[ install mongodb 6.0 ]"
+mv /tmp/mongodb.repo /etc/yum.repos.d/mongodb.repo 
+yum install -y mongodb-org-6.0.1 mongodb-org-database-6.0.1 mongodb-org-server-6.0.1 mongodb-mongosh-6.0.1 mongodb-org-mongos-6.0.1 mongodb-org-tools-6.0.1
+echo "[install mongod service]"
+mv /tmp/mongod.service /usr/lib/systemd/system/mongod.service
+echo "[Create Required Mongo Directories]"
+mkdir -p /var/config/
+mkdir -p ${db_datafiles_path}

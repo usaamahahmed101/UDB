@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "[install unzip package]"
+yum install -y unzip 
+echo "[download mongodb artifacts]"
+gsutil cp gs://${bucket_name}/database/artifacts/mongo_configuration_artifact_${date_format}.zip /tmp/mongo_configuration_artifact_${date_format}.zip
+unzip /tmp/mongo_configuration_artifact_${date_format}.zip -d /tmp 
