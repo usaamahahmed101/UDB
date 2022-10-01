@@ -4,7 +4,7 @@ from gcloud import storage
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--source_file'),
-    parser.add_argument('--bucket_name')
+    parser.add_argument('--bucket_name'),
     parser.add_argument('--key')
     return parser.parse_args()
 
