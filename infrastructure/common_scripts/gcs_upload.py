@@ -4,11 +4,8 @@ from gcloud import storage
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--source_file'),
-                        #description='Full Path of the file to upload to gcs'),   
     parser.add_argument('--bucket_name')
-                        #description='GCS Bucket'), 
     parser.add_argument('--key')
-                        #description='GCS Bucket'),                                                                   
     return parser.parse_args()
 
 def main():
