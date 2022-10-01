@@ -1,7 +1,7 @@
 resource "google_compute_instance" "bastion_host" {
   name         = "bastion-host"
   machine_type = "e2-small"
-  zone         = "${var.default_zone}"
+  zone         = var.default_zone
   tags         = ["bastion"]
 
   boot_disk {
@@ -17,7 +17,7 @@ resource "google_compute_instance" "bastion_host" {
   }
 
   service_account {
-    email  = "${var.service_account}"
+    email  = var.service_account
     scopes = ["cloud-platform"]
   }
 

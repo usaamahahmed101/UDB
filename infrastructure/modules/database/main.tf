@@ -14,7 +14,7 @@ resource "google_compute_instance_template" "mongo_nodes_template" {
   }
 
   service_account {
-    email  = "${local.service_account}"
+    email  = local.service_account
     scopes = ["cloud-platform"]
   }
 
@@ -23,8 +23,8 @@ resource "google_compute_instance_template" "mongo_nodes_template" {
   }
 
   disk {
-    auto_delete = true
-    boot        = true
+    auto_delete  = true
+    boot         = true
     source_image = "centos-cloud/centos-7"
   }
 

@@ -26,34 +26,34 @@ locals {
 
   nodes = {
     "a" = {
-      "name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_1}",
-      "zone" = "${var.rgn}-${local.mongo_nodes_id.node_1}",
+      "name"           = "${local.complete_environment}-node-${local.mongo_nodes_id.node_1}",
+      "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_1}",
       "data_disk_name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_1}-data-disk",
       "log_disk_name"  = "${local.complete_environment}-node-${local.mongo_nodes_id.node_1}-log-disk",
-      "size" = 25,
-      "type" = "pd-ssd",
+      "size"           = 25,
+      "type"           = "pd-ssd",
     },
 
     "b" = {
-      "name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_2}",
-      "zone" = "${var.rgn}-${local.mongo_nodes_id.node_2}",
+      "name"           = "${local.complete_environment}-node-${local.mongo_nodes_id.node_2}",
+      "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_2}",
       "data_disk_name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_2}-data-disk",
       "log_disk_name"  = "${local.complete_environment}-node-${local.mongo_nodes_id.node_2}-log-disk",
-      "size" = 25,
-      "type" = "pd-ssd",
+      "size"           = 25,
+      "type"           = "pd-ssd",
     },
 
     "c" = {
-      "name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_3}",
-      "zone" = "${var.rgn}-${local.mongo_nodes_id.node_3}",
+      "name"           = "${local.complete_environment}-node-${local.mongo_nodes_id.node_3}",
+      "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_3}",
       "data_disk_name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_3}-data-disk",
       "log_disk_name"  = "${local.complete_environment}-node-${local.mongo_nodes_id.node_3}-log-disk",
-      "size" = 25,
-      "type" = "pd-ssd"
+      "size"           = 25,
+      "type"           = "pd-ssd"
     }
   }
 
-  service_account = "${var.service_account}"
+  service_account = var.service_account
 
   mongo_nodes = var.replicaset_status ? { a = local.nodes.a, b = local.nodes.b, c = local.nodes.c } : { a = local.nodes.a }
 

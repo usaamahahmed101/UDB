@@ -30,7 +30,7 @@ resource "google_compute_firewall" "mongo_firewall" {
 
   allow {
     protocol = "tcp"
-    ports    = ["22","27018","27020"]
+    ports    = ["22", "27018", "27020"]
   }
   source_ranges = ["10.174.1.0/24"]
   source_tags   = ["mongo"]
