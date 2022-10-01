@@ -8,15 +8,15 @@ resource "local_file" "render_mongod_templates" {
   for_each = local.mongod_artifacts.templates
   content = templatefile("${path.module}/templates/${each.value}.tftpl",
     {
+      repl_init         = local.mongod_artifacts.templates["script_2"]
+      date_format       = local.date_format
       db_datafiles_path = var.db_datafiles_path
       replicaset_status = var.replicaset_status
       db_logfile_path   = var.db_logfile_path
       replicaset_name   = var.replicaset_name
       pid_file_path     = var.pid_file_path
       default_port      = var.default_port
-      date_format       = local.date_format
       bucket_name       = var.default_bucket
-      repl_init         = local.mongod_artifacts.templates["script_2"]
       ip_addr_1         = "${google_compute_address.internal_ip["a"].address}:${var.default_port}"
       ip_addr_2         = var.replicaset_status ? "${google_compute_address.internal_ip["b"].address}:${var.default_port}" : ""
       ip_addr_3         = var.replicaset_status ? "${google_compute_address.internal_ip["c"].address}:${var.default_port}" : ""

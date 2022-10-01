@@ -2,7 +2,7 @@ locals {
 
   timestamp   = timestamp()
   date_format = formatdate("DD_MM_YY", local.timestamp)
-
+  service_account = var.service_account
   complete_environment = "${var.env}-${var.env_owner}"
 
   mongod_artifacts = {
@@ -27,33 +27,31 @@ locals {
   nodes = {
     "a" = {
       "name"           = "${local.complete_environment}-node-${local.mongo_nodes_id.node_1}",
-      "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_1}",
       "data_disk_name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_1}-data-disk",
       "log_disk_name"  = "${local.complete_environment}-node-${local.mongo_nodes_id.node_1}-log-disk",
+      "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_1}",
       "size"           = 25,
       "type"           = "pd-ssd",
     },
 
     "b" = {
       "name"           = "${local.complete_environment}-node-${local.mongo_nodes_id.node_2}",
-      "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_2}",
       "data_disk_name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_2}-data-disk",
       "log_disk_name"  = "${local.complete_environment}-node-${local.mongo_nodes_id.node_2}-log-disk",
+      "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_2}",
       "size"           = 25,
       "type"           = "pd-ssd",
     },
 
     "c" = {
       "name"           = "${local.complete_environment}-node-${local.mongo_nodes_id.node_3}",
-      "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_3}",
       "data_disk_name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_3}-data-disk",
       "log_disk_name"  = "${local.complete_environment}-node-${local.mongo_nodes_id.node_3}-log-disk",
+      "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_3}",
       "size"           = 25,
       "type"           = "pd-ssd"
     }
   }
-
-  service_account = var.service_account
 
   mongo_nodes = var.replicaset_status ? { a = local.nodes.a, b = local.nodes.b, c = local.nodes.c } : { a = local.nodes.a }
 
