@@ -4,7 +4,7 @@
 The purpsose of this project is to be able to create integrated resources of the following on the GCP Platform:
 1. VPC Network
 2. Bastion Host
-3. mongo database instance/replica-set
+3. mongo database standalone instance/replica-set
 
 ## Pre-Requisites
 In order for this code to work there is a number of steps to perform:
@@ -30,7 +30,7 @@ The Network module does the following:
 5. Configure appropriate firewall rules in order to maintain needed access between the resources that are to be created
 
 ### GCS_Bucket Module
-The purpose of this module is to create the GCS bucket inorder to store the artifacts generated during the environment creation
+The purpose of this module is to create the GCS bucket inorder to store the artifacts generated during the environment creation.
 
 ### Bastion Module
 The purpose of this module is to create a GCE instance using the public subnet as a jump server in order to connect the outside world with the environment created within the private subnet.
