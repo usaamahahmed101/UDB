@@ -24,5 +24,4 @@ resource "google_compute_instance" "bastion_host" {
   metadata_startup_script = templatefile("${path.module}/templates/bastion_startup_script.sh.tftpl", {
     admin_user = var.admin_user
   })
-
 }

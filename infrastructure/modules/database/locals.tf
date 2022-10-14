@@ -7,14 +7,16 @@ locals {
 
   mongod_artifacts = {
     "templates" = {
-      "script_1" = "init_mongod_process.sh",
-      "script_2" = "repl_init.conf",
-      "script_3" = "mongodb.repo",
-      "script_4" = "mongod.conf",
-      "script_5" = "install_mongo.sh",
-      "script_6" = "mongod.service",
-      "script_7" = "install_required_packages.sh",
-      "script_8" = "install_data_disk.sh",
+      "script_1"  = "init_mongod_process.sh",
+      "script_2"  = "repl_init.conf",
+      "script_3"  = "mongodb.repo",
+      "script_4"  = "mongod.conf",
+      "script_5"  = "install_mongo.sh",
+      "script_6"  = "mongod.service",
+      "script_7"  = "install_data_disk.sh",
+      "script_8"  = "check_ssh_availability.sh",
+      "script_9" = "ansible_inventory.ini"
+
     }
   }
 
@@ -23,6 +25,7 @@ locals {
     "node_2" = "b"
     "node_3" = "c"
   }
+
 
   nodes = {
     "a" = {
@@ -55,10 +58,10 @@ locals {
 
   mongo_nodes = var.replicaset_status ? { a = local.nodes.a, b = local.nodes.b, c = local.nodes.c } : { a = local.nodes.a }
 
+  mongodb_ip_addresses_without_port = var.replicaset_status ? "${google_compute_address.internal_ip["a"].address} ${google_compute_address.internal_ip["b"].address} ${google_compute_address.internal_ip["c"].address}" : "${google_compute_address.internal_ip["a"].address}"
+  
   mongodb_ip_addresses = var.replicaset_status ? "${google_compute_address.internal_ip["a"].address}:${var.default_port}, ${google_compute_address.internal_ip["b"].address}:${var.default_port}, ${google_compute_address.internal_ip["c"].address}:${var.default_port}" : "${google_compute_address.internal_ip["a"].address}:${var.default_port}"
 
-  download_init_conf = templatefile("${path.module}/templates/download_configurations.tftpl", {
-    bucket_name = var.default_bucket
-    date_format = local.date_format
-  })
+  ip_map = var.replicaset_status ? "{ \"${local.mongo_nodes_id["node_1"]}\" : \"${google_compute_address.internal_ip["a"].address}\",\"${local.mongo_nodes_id["node_2"]}\" : \"${google_compute_address.internal_ip["b"].address}\",\"${local.mongo_nodes_id["node_3"]}\" : \"${google_compute_address.internal_ip["c"].address}\"}" : "{ \"${local.mongo_nodes_id["node_1"]}\" : \"${google_compute_address.internal_ip["a"].address} \"}"
+ 
 }

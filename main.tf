@@ -32,4 +32,5 @@ module "database_config" {
   env               = var.env
   env_owner         = var.env_owner
   service_account   = var.service_account
+  bastion_ip        = module.bastion_config.bastion_host_ip
 }

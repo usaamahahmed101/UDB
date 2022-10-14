@@ -1,0 +1,12 @@
+[deployment]
+
+
+%{~ for node,ip in ip_addr ~}
+
+${env}-${env_owner}-node-${node} ansible_host=${ip} ansible_user=ansible ansible_ssh_private_key_file=~/.ssh/ansible_ed25519
+
+%{~ endfor ~}
+
+
+[deployment:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q ${bastion_ip}"'
