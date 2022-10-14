@@ -31,7 +31,15 @@ resource "google_compute_instance_template" "mongo_nodes_template" {
   metadata_startup_script = templatefile("${path.module}/templates/mongo_startup.sh.tftpl", {
     date_format        = local.date_format
     bucket_name        = var.default_bucket
-    download_init_conf = local.download_init_conf
   })
-
 }
+
+resource "null_resource" "run_ansible_playbook" {
+  provisioner "local-exec" {
+    command = "chmod +x ${path.cwd}/infrastructure/modules/database/mongod_artifacts/check_ssh_availability.sh; /bin/bash ${path.cwd}/infrastructure/modules/database/mongod_artifacts/check_ssh_availability.sh"
+  }
+    depends_on = [
+    local_file.render_mongod_templates
+  ]
+}
+

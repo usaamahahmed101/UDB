@@ -1,11 +1,19 @@
 #!/bin/bash
 cat <<EOF > /tmp/startup.sh
-${download_init_conf}
-echo "Start running mongo config scripts!"
-/tmp/install_required_packages.sh
-/tmp/install_mongo.sh
-/tmp/install_data_disk.sh
-/tmp/init_mongod_process.sh
+while true; do 
+    if [[ -f "/tmp/ansible_ready" ]]; then
+        gsutil cp gs://${bucket_name}/database/artifacts/mongo_configuration_artifact_${date_format}.zip /tmp/mongo_configuration_artifact_${date_format}.zip
+        unzip /tmp/mongo_configuration_artifact_${date_format}.zip -d /tmp 
+        echo "Start running mongo config scripts!"
+        /tmp/install_mongo.sh
+        /tmp/install_data_disk.sh
+        /tmp/init_mongod_process.sh
+        break
+    else
+        echo "Sleeping 10 seconds"
+        sleep 10
+    fi
+done
 EOF
-chmod 755 /tmp/startup.sh
-./tmp/startup.sh
+chmod 755 /tmp/*
+/tmp/startup.sh

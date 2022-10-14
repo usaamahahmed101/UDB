@@ -49,3 +49,7 @@ variable "rgn" {
 variable "service_account" {
   type = string
 }
+
+variable "bastion_ip" {
+  type = string
+}

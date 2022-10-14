@@ -1,0 +1,9 @@
+---
+
+- name: Install Basic Packages
+  hosts: all
+  remote_user: ansible
+  become: yes
+
+  roles:
+  - basic_packages
