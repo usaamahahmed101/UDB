@@ -1,0 +1,43 @@
+name: Terraform Deployment
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+
+jobs:
+  terraform_deployment:
+      name: "Terraform Deployment"
+      runs-on: macos-latest
+      defaults:
+        run:
+          shell: zsh
+
+      steps: 
+      - name: checkout codebase
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform fmt code from base dir 
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+
+      - name: Terraform initialize from base dir 
+        id: init
+        run: terraform init
+
+      - name: Terraform plan 
+        id: plan
+        run: terraform plan     
+
+      # - name: Terraform apply 
+      #   id: apply
+      #   run: |
+      #   terraform apply -auto-approve \
+      #   -var-file=terraform.tfvars
+
+  
