@@ -12,7 +12,7 @@ jobs:
       runs-on: macos-latest
       defaults:
         run:
-          shell: zsh
+          shell: bash
 
       steps: 
       - name: checkout codebase
