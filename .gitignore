@@ -1,7 +1,0 @@
-.terraform/*
-terraform.tfstate
-terraform.tfstate.backup
-credentials.tf
-*.code-workspace* 
-.gitginore
-.terraform.lock.hcl
