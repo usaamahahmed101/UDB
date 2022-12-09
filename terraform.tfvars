@@ -6,7 +6,7 @@ env_owner       = "devops"
 default_zone    = "us-central1-a"
 
 ### Bucket Module Configuration
-default_bucket   = "general-udbusa"
+default_bucket   = "general-usaamah"
 default_location = "us-central1"
 
 ### Bastion Host Configuration
@@ -17,5 +17,5 @@ db_logfile_path   = "/log/mongodb.log"
 db_datafiles_path = "/data"
 pid_file          = "/var/config/mongod.pid"
 replica_name      = "rs0"
-replica_stat      = false 
+replica_stat      = false
 port              = "27018"

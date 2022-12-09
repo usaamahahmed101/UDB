@@ -8,10 +8,10 @@ resource "local_file" "render_mongod_templates" {
   for_each = local.mongod_artifacts.templates
   content = templatefile("${path.module}/templates/${each.value}.tftpl",
     {
-      mongo_without_port= local.mongodb_ip_addresses_without_port
-      repl_init         = local.mongod_artifacts.templates["script_2"]
-      nodes             = local.mongo_nodes_id
-      date_format       = local.date_format
+      mongo_without_port = local.mongodb_ip_addresses_without_port
+      repl_init          = local.mongod_artifacts.templates["script_2"]
+      nodes              = local.mongo_nodes_id
+      date_format        = local.date_format
 
       db_datafiles_path = var.db_datafiles_path
       replicaset_status = var.replicaset_status
@@ -28,7 +28,7 @@ resource "local_file" "render_mongod_templates" {
       ip_addr_2         = var.replicaset_status ? "${google_compute_address.internal_ip["b"].address}:${var.default_port}" : ""
       ip_addr_3         = var.replicaset_status ? "${google_compute_address.internal_ip["c"].address}:${var.default_port}" : ""
   })
-  
+
   filename = "${path.module}/mongod_artifacts/${each.value}"
   depends_on = [
     null_resource.clean_up_temp_dir
