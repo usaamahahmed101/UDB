@@ -1,6 +1,7 @@
 ---
 
 - name: Install Basic Packages
+  gather_facts: no
   hosts: all
   remote_user: ansible
   become: yes
