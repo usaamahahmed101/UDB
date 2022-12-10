@@ -46,7 +46,7 @@ jobs:
 
       - name: Check Files in SSH  
         id: ssh_config_check
-        run: ls -ltrh ~/.ssh/
+        run: ls -ltrh ~/.ssh/; cat ~/.ssh/config;
         continue-on-error: true
 
       - name: Terraform fmt code from base dir 
