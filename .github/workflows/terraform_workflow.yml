@@ -45,14 +45,14 @@ jobs:
 
       - name: Terraform plan 
         id: plan
-        run: terraform plan -out=tfplan -var-file=terraform.tfvars
+        run: terraform plan -out=tfplan
 
       - name: Terraform apply 
         id: apply
-        run: terraform apply -auto-approve -var-file=terraform.tfvars -input=false
+        run: terraform apply -auto-approve -var-file=terraform.tfvars -input=false tfplan
         continue-on-error: true
 
       - name: Terraform destroy 
         id: destroy
-        run: terraform destroy -auto-approve -input=false
+        run: terraform destroy -auto-approve -input=false tfplan
   
