@@ -36,14 +36,13 @@ jobs:
         with:
           project_id: 'devops-361723'
     
-      - name: Adding ansible private key to be used for verifying instance creation
-        run: echo -n -e "${{ secrets.ANSIBLE_PRIV }}" > ~/.ssh/ansible_ed25519 
-
-      - name: Updating Permissions
-        run: chmod 600 ~/.ssh/ansible_ed25519 
-
-      - name: verifying secrets file
-        run: cat ~/.ssh/ansible_ed25519                
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.ANSIBLE_PRIV }}
+          name: ansible_ed25519 
+          config: ${{ secrets.ANSIBLE_CONFIG }} 
+          known_hosts: unnecessary  
   
       - name: Terraform fmt code from base dir 
         id: fmt
