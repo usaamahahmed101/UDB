@@ -28,7 +28,7 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-          
+
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
     
@@ -45,10 +45,11 @@ jobs:
         id: plan
         run: terraform plan     
 
-      # - name: Terraform apply 
-      #   id: apply
-      #   run: |
-      #   terraform apply -auto-approve \
-      #   -var-file=terraform.tfvars
-
+      - name: Terraform apply 
+        id: apply
+        run: terraform apply -auto-approve -var-file=terraform.tfvars
+        
+      - name: Terraform destroy 
+        id: destroy
+        run: terraform destroy
   
