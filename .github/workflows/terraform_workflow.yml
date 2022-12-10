@@ -49,7 +49,8 @@ jobs:
         with:
           key: ${{ secrets.PRIVATE }}
           name: id_rsa 
- 
+          known_hosts: unnecessary  
+
 
       - name: Check Files in SSH  
         id: ssh_config_check
