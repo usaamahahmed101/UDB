@@ -31,6 +31,8 @@ jobs:
 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
+        with:
+          project_id: 'devops-361723'
     
       - name: Terraform fmt code from base dir 
         id: fmt
@@ -48,7 +50,8 @@ jobs:
       - name: Terraform apply 
         id: apply
         run: terraform apply -auto-approve -var-file=terraform.tfvars
-        
+        continue-on-error: true
+
       - name: Terraform destroy 
         id: destroy
         run: terraform destroy

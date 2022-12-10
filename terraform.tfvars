@@ -6,7 +6,7 @@ env_owner       = "devops"
 default_zone    = "us-central1-a"
 
 ### Bucket Module Configuration
-default_bucket   = "general-usaamah"
+default_bucket   = "general-udb"
 default_location = "us-central1"
 
 ### Bastion Host Configuration

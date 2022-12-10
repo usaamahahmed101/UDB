@@ -7,3 +7,10 @@ terraform {
   }
   required_version = "~> 1.2.8"
 }
+
+terraform {
+ backend "gcs" {
+   bucket  = "udb_tfstate_backup"
+   prefix  = "terraform/state"
+ }
+}
