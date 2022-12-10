@@ -12,7 +12,7 @@ resource "google_compute_router" "router" {
     asn            = 64514
     advertise_mode = "CUSTOM"
   }
-  region = var.default_location
+  region = var.default_network_location
 }
 
 # Public Subnet  
@@ -20,7 +20,7 @@ resource "google_compute_subnetwork" "public" {
   name          = "public"
   ip_cidr_range = "192.168.0.0/24"
   network       = google_compute_network.mainvpc.id
-  region = var.default_location
+  region = var.default_network_location
 }
 
 
@@ -29,7 +29,7 @@ resource "google_compute_subnetwork" "private" {
   name          = "private"
   ip_cidr_range = "192.168.1.0/24"
   network       = google_compute_network.mainvpc.id
-  region = var.default_location
+  region = var.default_network_location
 
 }
 
@@ -43,6 +43,6 @@ resource "google_compute_router_nat" "nat" {
     name                    = google_compute_subnetwork.private.self_link
     source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
   }
-  region = var.default_location
+  region = var.default_network_location
 }
 
