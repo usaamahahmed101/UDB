@@ -52,10 +52,10 @@ jobs:
           known_hosts: unnecessary  
 
 
-      - name: Check Files in SSH  
-        id: ssh_config_check
-        run: ls -ltrh ~/.ssh/; cat ~/.ssh/config; chmod 644 ~/.ssh/ansible_ed25519
-        continue-on-error: true
+      # - name: Check Files in SSH  
+      #   id: ssh_config_check
+      #   run: ls -ltrh ~/.ssh/; cat ~/.ssh/config;
+      #   continue-on-error: true
 
       - name: Terraform fmt code from base dir 
         id: fmt

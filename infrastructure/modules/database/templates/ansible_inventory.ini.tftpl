@@ -9,4 +9,4 @@ ${env}-${env_owner}-node-${node} ansible_host=${ip} ansible_user=ansible ansible
 
 
 [deployment:vars]
-ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q ${bastion_ip}"'
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q usaamahahmed@${bastion_ip} -i ~/.ssh/id_rsa"'
