@@ -36,7 +36,7 @@ jobs:
         with:
           project_id: 'devops-361723'
     
-      - name: Install SSH key
+      - name: Install Ansible SSH key
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.ANSIBLE_PRIV }}
@@ -44,9 +44,16 @@ jobs:
           config: ${{ secrets.ANSIBLE_CONFIG }} 
           known_hosts: unnecessary  
 
+      - name: Install id_rsa SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.PRIVATE }}
+          name: id_rsa 
+ 
+
       - name: Check Files in SSH  
         id: ssh_config_check
-        run: ls -ltrh ~/.ssh/; cat ~/.ssh/config;
+        run: ls -ltrh ~/.ssh/; cat ~/.ssh/config; chmod 644 ~/.ssh/ansible_ed25519
         continue-on-error: true
 
       - name: Terraform fmt code from base dir 

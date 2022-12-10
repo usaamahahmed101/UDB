@@ -5,7 +5,7 @@ for i in $${mongo_address[@]};
 do
     while true; do
         echo "[ SSH Check Connectivity for $${i} ]"
-        ssh -vvvv -o ProxyCommand="ssh -W %h:%p -q ${bastion_ip}" -i ~/.ssh/ansible_ed25519 ansible@$${i} -o "StrictHostKeyChecking no" -p 22 'exit 0;'
+        ssh -vvvv -o ProxyCommand="ssh -W %h:%p -q ${bastion_ip}" -i ~/.ssh/ansible_ed25519 ansible@$${i}  'exit 0;'
         if [ $? == 0 ];then
             echo "SSH Connection to $${i} is possible"
             echo " Current Directory is '`pwd`'"
