@@ -29,8 +29,8 @@ resource "google_compute_instance_template" "mongo_nodes_template" {
   }
 
   metadata_startup_script = templatefile("${path.module}/templates/mongo_startup.sh.tftpl", {
-    date_format = local.date_format
-    bucket_name = var.default_bucket
+                date_format = local.date_format
+                bucket_name = var.default_bucket
   })
 }
 

@@ -10,10 +10,9 @@ do
             echo "SSH Connection to $${i} is possible"
             echo " Current Directory is '`pwd`'"
             ls -ltrh ./infrastructure/modules/database/mongod_artifacts/
-            echo "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-            cat ./infrastructure/modules/database/mongod_artifacts/ansible_inventory.ini
-            echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-            ansible-playbook -vvv -i infrastructure/modules/database/mongod_artifacts/ansible_inventory.ini --private-key  ~/.ssh/ansible_ed25519 infrastructure/modules/database/ansible_plays/basic_packages.yaml
+        #   echo "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+        #   echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+        #   ansible-playbook -vvv -i infrastructure/modules/database/mongod_artifacts/ansible_inventory.ini --private-key  ~/.ssh/ansible_ed25519 infrastructure/modules/database/ansible_plays/basic_packages.yaml
             break;
         else
             echo "SSH connection to $${i} is not possible"

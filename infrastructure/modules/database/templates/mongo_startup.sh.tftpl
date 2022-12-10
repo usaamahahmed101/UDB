@@ -1,7 +1,10 @@
 #!/bin/bash
+yum -y install numactl
+yum -y install unzip
+touch /tmp/ready_for_startup
 cat <<EOF > /tmp/startup.sh
 while true; do 
-    if [[ -f "/tmp/ansible_ready" ]]; then
+    if [[ -f "/tmp/ready_for_startup" ]]; then
         gsutil cp gs://${bucket_name}/database/artifacts/mongo_configuration_artifact_${date_format}.zip /tmp/mongo_configuration_artifact_${date_format}.zip
         unzip /tmp/mongo_configuration_artifact_${date_format}.zip -d /tmp 
         echo "Start running mongo config scripts!"

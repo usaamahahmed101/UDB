@@ -15,8 +15,6 @@ locals {
       "script_6" = "mongod.service",
       "script_7" = "install_data_disk.sh",
       "script_8" = "check_ssh_availability.sh",
-      "script_9" = "ansible_inventory.ini"
-
     }
   }
 
