@@ -9,7 +9,7 @@ do
         if [ $? == 0 ];then
             echo "SSH Connection to $${i} is possible"
             echo " Current Directory is '`pwd`'"
-            ansible-playbook -i infrastructure/modules/database/mongod_artifacts/ansible_inventory.ini --private-key  ~/.ssh/ansible_ed25519 infrastructure/modules/database/ansible_plays/basic_packages.yaml
+            ansible-playbook -vvv -i infrastructure/modules/database/mongod_artifacts/ansible_inventory.ini --private-key  ~/.ssh/ansible_ed25519 infrastructure/modules/database/ansible_plays/basic_packages.yaml
             break;
         else
             echo "SSH connection to $${i} is not possible"
