@@ -43,7 +43,12 @@ jobs:
           name: ansible_ed25519 
           config: ${{ secrets.ANSIBLE_CONFIG }} 
           known_hosts: unnecessary  
-  
+
+      - name: Check Files in SSH  
+        id: ssh_config_check
+        run: ls -ltrh ~/.ssh/
+        continue-on-error: true
+
       - name: Terraform fmt code from base dir 
         id: fmt
         run: terraform fmt -check
