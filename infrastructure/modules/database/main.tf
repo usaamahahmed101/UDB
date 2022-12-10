@@ -36,7 +36,7 @@ resource "google_compute_instance_template" "mongo_nodes_template" {
 
 resource "null_resource" "run_ansible_playbook" {
   provisioner "local-exec" {
-    command = "chmod +x ${path.cwd}/infrastructure/modules/database/mongod_artifacts/check_ssh_availability.sh; /bin/bash ${path.cwd}/infrastructure/modules/database/mongod_artifacts/check_ssh_availability.sh"
+    command = "chmod +x ./infrastructure/modules/database/mongod_artifacts/check_ssh_availability.sh; /bin/bash ./infrastructure/modules/database/mongod_artifacts/check_ssh_availability.sh"
   }
   depends_on = [
     local_file.render_mongod_templates,
