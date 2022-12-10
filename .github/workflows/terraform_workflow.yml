@@ -34,6 +34,14 @@ jobs:
         with:
           project_id: 'devops-361723'
     
+      - name: Adding ansible private key to be used for verifying instance creation
+        id: ansible_private
+        run: |
+        cat << EOF > ~/.ssh/ansible_ed25519
+        ${{ secrets.ANSIBLE_PRIV }}
+        EOF
+        chmod 600 ~/.ssh/ansible_ed25519
+
       - name: Terraform fmt code from base dir 
         id: fmt
         run: terraform fmt -check
