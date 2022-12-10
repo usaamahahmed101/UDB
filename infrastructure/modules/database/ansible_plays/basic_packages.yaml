@@ -5,5 +5,15 @@
   remote_user: ansible
   become: yes
 
-  roles:
-  - basic_packages
+  tasks:
+    - name: Ensure necessary packages are installed 
+      yum:
+        name: 
+          - numactl
+          - unzip 
+        state: latest
+      
+    - name: Creating file to kick off the startup scripts
+      file:
+        path: "/tmp/ansible_ready"
+        state: touch
