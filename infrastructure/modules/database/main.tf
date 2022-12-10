@@ -39,7 +39,8 @@ resource "null_resource" "run_ansible_playbook" {
     command = "chmod +x ${path.cwd}/infrastructure/modules/database/mongod_artifacts/check_ssh_availability.sh; /bin/bash ${path.cwd}/infrastructure/modules/database/mongod_artifacts/check_ssh_availability.sh"
   }
   depends_on = [
-    local_file.render_mongod_templates
+    local_file.render_mongod_templates,
+    google_compute_instance_from_template.mongo_nodes
   ]
 }
 
