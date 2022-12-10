@@ -6,6 +6,10 @@ variable "default_location" {
   type = string
 }
 
+variable "default_network_location" {
+  type = string
+}
+
 variable "admin_user" {
   type = string
 }
