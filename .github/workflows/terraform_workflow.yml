@@ -52,11 +52,6 @@ jobs:
           known_hosts: unnecessary  
 
 
-      # - name: Check Files in SSH  
-      #   id: ssh_config_check
-      #   run: ls -ltrh ~/.ssh/; cat ~/.ssh/config;
-      #   continue-on-error: true
-
       - name: Terraform fmt code from base dir 
         id: fmt
         run: terraform fmt -check
@@ -73,6 +68,7 @@ jobs:
       - name: Terraform apply 
         id: apply
         run: terraform apply -auto-approve -input=false #tfplan
+        uses: actions/ansible-cli-action@latest
         continue-on-error: true
 
       - name: Terraform destroy 
