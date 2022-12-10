@@ -3,7 +3,6 @@ name: Terraform Deployment
 on:
   push:
     branches:
-      - main
       - 'feature/**'
 
 jobs:
@@ -40,8 +39,8 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: 'Setup Ansible'
-        run: python3 -m pip install ansible==2.9; which ansible
+    # - name: 'Setup Ansible'
+    #   run: python3 -m pip install ansible==2.9; which ansible
 
       - name: Install Ansible SSH key
         uses: shimataro/ssh-key-action@v2
@@ -57,7 +56,6 @@ jobs:
           key: ${{ secrets.PRIVATE }}
           name: id_rsa 
           known_hosts: unnecessary  
-
 
       - name: Terraform fmt code from base dir 
         id: fmt
@@ -75,9 +73,4 @@ jobs:
       - name: Terraform apply 
         id: apply
         run: terraform apply -auto-approve -input=false #tfplan
-        continue-on-error: true
 
-      # - name: Terraform destroy 
-      #   id: destroy
-      #   run: terraform destroy -auto-approve -input=false
-  
