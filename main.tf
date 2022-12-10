@@ -1,6 +1,6 @@
 module "network_config" {
-  source = "./infrastructure/modules/network"
-  region = var.default_location
+  source         = "./infrastructure/modules/network"
+  default_region = var.default_location
 }
 
 
