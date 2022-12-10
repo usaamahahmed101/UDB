@@ -10,11 +10,10 @@ jobs:
   terraform_deployment:
       name: "Terraform Deployment"
       runs-on: macos-latest
-      timeout-minutes: 10
+      timeout-minutes: 20
       defaults:
         run:
           shell: bash
-
 
       steps: 
       - name: checkout codebase
@@ -35,7 +34,15 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v1'
         with:
           project_id: 'devops-361723'
-    
+
+      - name: 'Setup Python'
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 'Setup Ansible'
+        run: python3 -m pip install ansible==2.9; which ansible
+
       - name: Install Ansible SSH key
         uses: shimataro/ssh-key-action@v2
         with:
@@ -68,7 +75,6 @@ jobs:
       - name: Terraform apply 
         id: apply
         run: terraform apply -auto-approve -input=false #tfplan
-        uses: actions/ansible-cli-action@latest
         continue-on-error: true
 
       - name: Terraform destroy 
