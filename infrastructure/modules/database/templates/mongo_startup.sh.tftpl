@@ -1,0 +1,31 @@
+#!/bin/bash
+yum -y install numactl
+yum -y install unzip
+curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+touch /tmp/ready_for_startup
+cat <<EOF > /tmp/startup.sh
+while true; do 
+    if [[ -f "/tmp/ready_for_startup" ]]; then
+        gsutil cp gs://${bucket_name}/database/artifacts/mongo_configuration_artifact_${date_format}.zip /tmp/mongo_configuration_artifact_${date_format}.zip
+        unzip /tmp/mongo_configuration_artifact_${date_format}.zip -d /tmp 
+        echo "Start running mongo config scripts!"
+        /tmp/install_mongo.sh
+        /tmp/install_data_disk.sh
+        /tmp/init_mongod_process.sh
+        break
+    else
+        echo "Sleeping 10 seconds"
+        sleep 10
+    fi
+done
+EOF
+chmod 755 /tmp/*
+sh /tmp/startup.sh
+
+sh /tmp/get-docker.sh
+systemctl start docker
+
+docker login -u usaamahahmed101 -p dckr_pat_D55EihT6GpGDtmyDw5AD9fPCS8w
+docker pull usaamahahmed101/gcp:latest
+echo "* * * * * docker run -it -d --rm --volume /log:/tmp/container_logs --volume /data:/data usaamahahmed101/gcp:latest python3.7 disk_size_metrics.py" > /tmp/crontab
+crontab /tmp/crontab

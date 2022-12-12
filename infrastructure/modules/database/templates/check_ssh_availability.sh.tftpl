@@ -1,0 +1,24 @@
+#!/bin/bash
+   
+declare -a mongo_address=("${mongo_without_port}")
+for i in $${mongo_address[@]};
+do
+    while true; do
+        echo "[ SSH Check Connectivity for $${i} ]"
+        ssh -o ProxyCommand="ssh -W %h:%p -q usaamahahmed@${bastion_ip} -i ~/.ssh/id_rsa" -i ~/.ssh/id_rsa usaamahahmed@$${i}  'exit 0;'
+        if [ $? == 0 ];then
+            echo "SSH Connection to $${i} is possible"
+        #   echo " Current Directory is '`pwd`'"
+        #   ls -ltrh ./infrastructure/modules/database/mongod_artifacts/
+        #   echo "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+        #   echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+        #   ansible-playbook -vvv -i infrastructure/modules/database/mongod_artifacts/ansible_inventory.ini --private-key  ~/.ssh/ansible_ed25519 infrastructure/modules/database/ansible_plays/basic_packages.yaml
+            break;
+        else
+            echo "SSH connection to $${i} is not possible"
+        sleep 10
+        fi
+    done
+done 
+
+

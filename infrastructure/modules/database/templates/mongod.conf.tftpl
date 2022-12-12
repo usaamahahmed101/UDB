@@ -1,0 +1,20 @@
+systemLog:
+    destination: file
+    logAppend: true 
+    path: ${db_logfile_path}
+
+storage:
+    dbPath: ${db_datafiles_path}
+    journal:
+        enabled: true
+
+processManagement:
+    fork: true
+
+net:
+    bindIpAll: true
+    port: ${default_port}
+
+replication:
+    replSetName: "${replicaset_name}"
+
