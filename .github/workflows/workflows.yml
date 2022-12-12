@@ -27,12 +27,10 @@ jobs:
         id: vars
         shell: bash
         run: |
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       
       - name: variable values
         run: |
-          echo "Branch: ${{ steps.vars.outputs.branch }}"
           echo "Sha: ${{ steps.vars.outputs.sha_short }}"
           
       - name: list all changed files
@@ -69,7 +67,7 @@ jobs:
         with:
           dockerfile:  . 
           push: true
-          tags: usaamahahmed101/gcp:${{ steps.vars.outputs.branch }}.${{ steps.vars.outputs.sha_short }}
+          tags: usaamahahmed101/gcp:${{ steps.vars.outputs.sha_short }}
 
   terraform_deployment:
       name: Terraform Deployment
