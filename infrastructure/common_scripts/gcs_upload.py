@@ -1,5 +1,5 @@
 import argparse
-from gcloud import storage
+from gcloud import storage 
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -28,7 +28,7 @@ def checking_bucket_status(gs_storage_client, bucket_name):
         bucket_status = gs_storage_client.get_bucket(bucket_name)
         print(f"Bucket {bucket_status} exists!")
     except:
-        print(f"Bucket {bucket_name} does not exist! Create bucket before proceeding :)")
+        print(f"Bucket {bucket_name} does not exist! Create bucket before proceeding:)")
         create_bucket = gs_storage_client.create_bucket(bucket_name)
         print(f"Bucket {bucket_name} has been created!")
         pass
