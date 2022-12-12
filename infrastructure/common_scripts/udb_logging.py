@@ -8,7 +8,7 @@ def get_logger():
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     return logger
-
+    
 logger = get_logger()
 
 
