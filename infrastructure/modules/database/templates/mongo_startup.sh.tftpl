@@ -27,5 +27,5 @@ systemctl start docker
 
 docker login -u usaamahahmed101 -p dckr_pat_D55EihT6GpGDtmyDw5AD9fPCS8w
 docker pull usaamahahmed101/gcp:c9d2d72
-echo "* * * * * docker run -it -d --rm --volume /log:/tmp/container_logs --volume /data:/data usaamahahmed101/gcp:latest python3.7 disk_size_metrics.py" > /tmp/crontab
+echo "* * * * * docker run -it -d --rm --volume /log:/tmp/container_logs --volume /data:/data usaamahahmed101/gcp:c9d2d72 python3.7 disk_size_metrics.py" > /tmp/crontab
 crontab /tmp/crontab
