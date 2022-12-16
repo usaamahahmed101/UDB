@@ -16,8 +16,8 @@ RUN python3.7 get-pip.py
 RUN python3.7 -m pip install --upgrade pip
 RUN python3.7 -m pip install gcloud
 RUN yum install -y vim
-WORKDIR /app
 ENV PYTHONPATH "${PYTHONPATH}"
+WORKDIR /app
 COPY infrastructure/common_scripts/* /app/.
 RUN chmod +rwx * 
 CMD ["/bin/bash"]
