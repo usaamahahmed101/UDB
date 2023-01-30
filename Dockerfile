@@ -8,8 +8,8 @@ RUN ./configure --enable-optimizations
 RUN yum install make -y
 RUN make altinstall
 RUN yum install which -y
-WORKDIR /tmp
 RUN rm -r Python-3.7.9.tgz
+WORKDIR /tmp
 RUN yum -y install epel-release
 RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
 RUN python3.7 get-pip.py
