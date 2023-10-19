@@ -124,6 +124,6 @@ jobs:
         id: apply
         run: terraform apply -auto-approve -input=false 
 
-  #     - name: Terraform destroy 
-  #       id: destroy
-  #       run: terraform destroy -auto-approve -input=false 
+      - name: Terraform destroy 
+        id: destroy
+        run: terraform destroy -auto-approve -input=false 
