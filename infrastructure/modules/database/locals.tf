@@ -31,7 +31,7 @@ locals {
       "data_disk_name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_1}-data-disk",
       "log_disk_name"  = "${local.complete_environment}-node-${local.mongo_nodes_id.node_1}-log-disk",
       "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_1}",
-      "size"           = 40,
+      "size"           = 5,
       "type"           = "pd-ssd",
     },
 
@@ -40,7 +40,7 @@ locals {
       "data_disk_name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_2}-data-disk",
       "log_disk_name"  = "${local.complete_environment}-node-${local.mongo_nodes_id.node_2}-log-disk",
       "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_2}",
-      "size"           = 40,
+      "size"           = 5,
       "type"           = "pd-ssd",
     },
 
@@ -49,7 +49,7 @@ locals {
       "data_disk_name" = "${local.complete_environment}-node-${local.mongo_nodes_id.node_3}-data-disk",
       "log_disk_name"  = "${local.complete_environment}-node-${local.mongo_nodes_id.node_3}-log-disk",
       "zone"           = "${var.rgn}-${local.mongo_nodes_id.node_3}",
-      "size"           = 40,
+      "size"           = 5,
       "type"           = "pd-ssd"
     }
   }

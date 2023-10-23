@@ -1,46 +1,32 @@
-resource "google_compute_instance_template" "mongo_nodes_template" {
-  name         = "mongo-node-template"
-  machine_type = "e2-medium"
-  tags         = ["mongo"]
+resource "google_compute_instance_from_template" "mongo_nodes" {
+  for_each = local.mongo_nodes
+  name     = each.value.name
+  zone     = each.value.zone
 
 
-  #   // Local SSD disk
-  #   scratch_disk {
-  #     interface = "SCSI"
-  #   }
+  source_instance_template = google_compute_instance_template.mongo_nodes_template.self_link
 
+  // Override fields from instance template
   network_interface {
     subnetwork = var.network_private
+    network_ip = google_compute_address.internal_ip["${each.key}"].address
   }
 
-  service_account {
-    email  = local.service_account
-    scopes = ["cloud-platform"]
+  boot_disk {
+    initialize_params {
+      image = "centos-cloud/centos-7"
+    }
+    auto_delete = true
   }
 
-  metadata = {
-    #enable-oslogin: "TRUE"
+  attached_disk {
+    source = google_compute_disk.data_disk_creations[each.key].self_link
   }
 
-  disk {
-    auto_delete  = true
-    boot         = true
-    source_image = "centos-cloud/centos-7"
+  attached_disk {
+    source = google_compute_disk.log_disk_creations[each.key].self_link
   }
 
-  metadata_startup_script = templatefile("${path.module}/templates/mongo_startup.sh.tftpl", {
-    date_format = local.date_format
-    bucket_name = var.default_bucket
-  })
 }
 
-# resource "null_resource" "run_ansible_playbook" {
-#   provisioner "local-exec" {
-#     command = "chmod +x ./infrastructure/modules/database/mongod_artifacts/check_ssh_availability.sh; /bin/bash ./infrastructure/modules/database/mongod_artifacts/check_ssh_availability.sh"
-#   }
-#   depends_on = [
-#     local_file.render_mongod_templates,
-#     google_compute_instance_from_template.mongo_nodes
-#   ]
-# }
 
