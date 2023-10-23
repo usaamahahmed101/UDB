@@ -31,6 +31,7 @@ resource "google_compute_subnetwork" "private" {
   network       = google_compute_network.mainvpc.id
   region        = var.default_network_rgn
 
+
 }
 
 # NAT Gateway
@@ -45,4 +46,5 @@ resource "google_compute_router_nat" "nat" {
   }
   region = var.default_network_rgn
 }
+
 

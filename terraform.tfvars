@@ -19,3 +19,9 @@ pid_file          = "/var/config/mongod.pid"
 replica_name      = "rs0"
 replica_stat      = true
 port              = "27018"
+
+### Web Configuration
+web_instance_name = "web-app"
+web_min_nodes = 1
+web_max_nodes = 5
+web_mig_name  =  "web-app-autoscaler"

@@ -35,3 +35,20 @@ module "database_config" {
   service_account   = var.service_account
   bastion_ip        = module.bastion_config.bastion_host_ip
 }
+
+module "web_config" {
+  source            = "./infrastructure/modules/web"
+  network_private   = module.network_config.network_private
+  default_bucket    = var.default_bucket
+  admin_user        = var.admin_user
+  env               = var.env
+  env_owner         = var.env_owner
+  service_account   = var.service_account
+  bastion_ip        = module.bastion_config.bastion_host_ip
+  rgn               = var.rgn
+  instance_name = var.web_instance_name
+  min_nodes = var.web_min_nodes
+  max_nodes = var.web_max_nodes
+  mig_name = var.web_mig_name
+
+}
