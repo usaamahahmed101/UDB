@@ -21,19 +21,19 @@ resource "google_compute_firewall" "bastion_mongo_firewall" {
   }
   source_ranges = ["192.168.0.0/24"]
   source_tags   = ["bastion"]
-  target_tags   = ["mongo","web"]
+  target_tags   = ["mongo","engine"]
 }
 
-resource "google_compute_firewall" "web_web_firewall" {
-  name    = "mongo-web-firewall"
+resource "google_compute_firewall" "engine_firewall" {
+  name    = "mongo-engine-firewall"
   network = google_compute_network.mainvpc.name
 
   allow {
     protocol = "tcp"
     ports    = ["22","27018","80"]
   }
-  source_tags   = ["web"]
-  target_tags   = ["mongo","web"]
+  source_tags   = ["engine"]
+  target_tags   = ["mongo","engine"]
 }
 
 # allow access from health check ranges
@@ -46,5 +46,5 @@ resource "google_compute_firewall" "default" {
     protocol = "tcp"
     ports    = ["80"]
   }
-  target_tags = ["web"]
+  target_tags = ["engine"]
 }

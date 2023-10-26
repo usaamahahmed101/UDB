@@ -20,8 +20,8 @@ replica_name      = "rs0"
 replica_stat      = true
 port              = "27018"
 
-### Web Configuration
-web_instance_name = "web-app"
-web_min_nodes = 1
-web_max_nodes = 5
-web_mig_name  =  "web-app-autoscaler"
+### Engine Configuration
+engine_instance_name = "engine"
+engine_min_nodes = 1
+engine_max_nodes = 5
+engine_mig_name  =  "engine-autoscaler"
