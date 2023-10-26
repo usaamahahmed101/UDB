@@ -49,3 +49,10 @@ variable "mig_name" {
   type = string
 }
 
+variable "engine_type" {
+  type = string
+}
+
+variable "named_port" {
+  type = string
+}

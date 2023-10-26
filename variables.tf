@@ -54,19 +54,19 @@ variable "default_zone" {
   type = string
 }
 
-variable "web_instance_name" {
+variable "engine_instance_name" {
   type = string
 }
 
-variable "web_min_nodes" {
+variable "engine_min_nodes" {
   type = string
 }
 
-variable "web_max_nodes" {
+variable "engine_max_nodes" {
   type = string
 }
 
-variable "web_mig_name" {
+variable "engine_mig_name" {
   type = string
 }
 
