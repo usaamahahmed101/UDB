@@ -1,7 +1,7 @@
 
 resource "google_compute_instance_template" "mongo_nodes_template" {
   name         = "mongo-node-template"
-  machine_type = "e2-medium"
+  machine_type = "e2-micro"
   tags         = ["mongo"]
 
 
@@ -26,7 +26,7 @@ resource "google_compute_instance_template" "mongo_nodes_template" {
   disk {
     auto_delete  = true
     boot         = true
-    source_image = "centos-cloud/centos-7"
+    source_image = "projects/devops-361723/global/images/base-centos-oct262023-ami"
   }
 
   metadata_startup_script = templatefile("${path.module}/templates/mongo_startup.sh.tftpl", {

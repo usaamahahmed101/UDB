@@ -39,6 +39,7 @@ module "database_config" {
 module "web_engine_config" {
   source            = "./infrastructure/modules/engine"
   network_private   = module.network_config.network_private
+  interal_lb_address = module.network_config.internal_lb_ip
   default_bucket    = var.default_bucket
   admin_user        = var.admin_user
   env               = var.env
@@ -57,6 +58,7 @@ module "web_engine_config" {
 module "api_engine_config" {
   source            = "./infrastructure/modules/engine"
   network_private   = module.network_config.network_private
+  interal_lb_address = module.network_config.internal_lb_ip
   default_bucket    = var.default_bucket
   admin_user        = var.admin_user
   env               = var.env

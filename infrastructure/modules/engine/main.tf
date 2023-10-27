@@ -25,16 +25,19 @@ resource "google_compute_region_instance_group_manager" "engine_instance_group_m
 
   base_instance_name = local.instance_name
 
-auto_healing_policies {
-  health_check      = (var.engine_type == "web") ? google_compute_health_check.default[0].self_link :  google_compute_region_health_check.default[0].self_link
- # health_check      = google_compute_health_check.default[0].self_link 
-  initial_delay_sec = 300
-  }
+# auto_healing_policies {
+#   health_check      = (var.engine_type == "web") ? google_compute_health_check.default[0].self_link :  google_compute_region_health_check.default[0].self_link
+#   initial_delay_sec = 300
+#   }
 
     named_port {
-    name = "tcp"
+    name =  "http"
     port = 80
     }
 
+  named_port {
+    name =  "tcp"
+    port = 5000
+    }
 
 }

@@ -3,11 +3,15 @@ resource "google_compute_forwarding_rule" "default" {
     name = "lb-frontend"
     ip_protocol = "TCP"
     load_balancing_scheme = "INTERNAL"
-    ports = [80]
+    ports = [5000]
     allow_global_access = true
     backend_service = google_compute_region_backend_service.api_backend_service[0].id
     subnetwork = var.network_private
+    ip_address = var.interal_lb_address
+
 }
+
+
 
 resource "google_compute_region_backend_service" "api_backend_service" {
   count = (var.engine_type == "api") ? 1 : 0

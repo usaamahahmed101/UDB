@@ -56,3 +56,7 @@ variable "engine_type" {
 variable "named_port" {
   type = string
 }
+
+variable "interal_lb_address" {
+  type = string
+}

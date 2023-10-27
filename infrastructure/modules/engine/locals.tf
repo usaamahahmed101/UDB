@@ -16,7 +16,10 @@ locals {
 
 
   templates = {
+  web_server_installation = templatefile("${path.module}/templates/web-engine.sh.tftpl", {})
   api_server_installation = templatefile("${path.module}/templates/api-engine.sh.tftpl", {})
   }
+
+#internal_lb_ip = google_compute_forwarding_rule.default.subnetwork
 
 }
