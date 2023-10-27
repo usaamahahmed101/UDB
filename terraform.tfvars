@@ -17,7 +17,7 @@ db_logfile_path   = "/log/mongodb.log"
 db_datafiles_path = "/data"
 pid_file          = "/var/config/mongod.pid"
 replica_name      = "rs0"
-replica_stat      = true
+replica_stat      = false
 port              = "27018"
 
 ### Engine Configuration

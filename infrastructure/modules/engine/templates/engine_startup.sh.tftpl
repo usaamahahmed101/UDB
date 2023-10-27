@@ -1,12 +1,20 @@
 #!/bin/bash
 echo "Starting Base Engine"
-yum install telnet -y
-set -euo pipefail
+/usr/sbin/setsebool -P httpd_can_network_connect true 
 
-yum install epel-release -y  
-yum install nginx jq -y      
 
-%{ if engine_type == "web" || engine_type == "api" }
+
+%{ if engine_type == "web" }
+
+${web_server_installation}
+
+%{ endif } 
+
+
+
+
+
+%{ if engine_type == "api" }
 
 ${api_server_installation}
 

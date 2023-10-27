@@ -19,7 +19,7 @@ resource "google_compute_region_health_check" "default" {
   check_interval_sec  = 60
   healthy_threshold   = 2
   unhealthy_threshold = 10
-  http_health_check {
-    port = 80
+  tcp_health_check {
+    port = 5000
   }
 }

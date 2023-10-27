@@ -6,7 +6,7 @@ resource "google_compute_instance" "bastion_host" {
 
   boot_disk {
     initialize_params {
-      image = "centos-cloud/centos-7"
+      image = "projects/devops-361723/global/images/base-centos-oct262023-ami"
     }
     auto_delete = true
   }

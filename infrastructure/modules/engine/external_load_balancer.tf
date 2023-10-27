@@ -35,7 +35,7 @@ resource "google_compute_backend_service" "default" {
   count = (var.engine_type == "web") ? 1 : 0
   name                     = "l7-xlb-backend-service"
   protocol                 = "HTTP"
-  port_name                = "tcp"
+  port_name                = "http"
   load_balancing_scheme    = "EXTERNAL"
   timeout_sec              = 10
   enable_cdn               = true

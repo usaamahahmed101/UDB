@@ -1,18 +1,33 @@
-NAME=$(curl -H "Metadata-Flavor: Google" "http://metadata.google.internal/computeMetadata/v1/instance/hostname")
-IP=$(curl -H "Metadata-Flavor: Google" "http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip")
-METADATA=$(curl -f -H "Metadata-Flavor: Google" "http://metadata.google.internal/computeMetadata/v1/instance/attributes/?recursive=True" | jq 'del(.["startup-script"])')
 
-cat <<EOF > /usr/share/nginx/html/index.html
-<pre>
-Name: $NAME
-IP: $IP
-Metadata: $METADATA
-</pre>
+PKG_PATH="/home/usaamahahmed/.miniconda3/lib/python3.9/site-packages"
+USER="usaamahahmed"
+
+cat <<EOF > $${PKG_PATH}/api.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)  
+    
 EOF
 
-# Start and enable Nginx
-systemctl start nginx
-systemctl enable nginx
+# Create and configure the api.sh file
+cat <<EOF > $${PKG_PATH}/api.sh
+#!/bin/bash
+source /home/$${USER}/.bashrc
+source /home/$${USER}/.bash_profile
+cd $${PKG_PATH}
+nohup gunicorn -w 4 -b 0.0.0.0:5000 api:app &
+EOF
 
+# Set ownership and permissions for the API.sh and API.py files
+chown -R $${USER}:$${USER} $${PKG_PATH}/api.sh $${PKG_PATH}/api.py
+chmod -R 777 $${PKG_PATH}/api.sh $${PKG_PATH}/api.py
 
-echo "Web Server is Up and Running...."
+# Execute the API.sh script as the user 'usaamahahmed'
+sudo -u $${USER} $${PKG_PATH}/api.sh
