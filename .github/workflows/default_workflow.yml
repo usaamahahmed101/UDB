@@ -58,6 +58,6 @@ jobs:
       - id: 'upload-file'
         uses: 'google-github-actions/upload-cloud-storage@v1'
         with:
-          path: './staging'
+          path: './staging/'
           destination: 'udb_app_artifacts/'
 
