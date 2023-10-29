@@ -6,7 +6,7 @@ on:
       - feature/**
 
 jobs:
-  docker:
+  python_package:
       name: Python Package for App deployment
       runs-on: ubuntu-latest
       timeout-minutes: 20
@@ -15,12 +15,7 @@ jobs:
           shell: bash
 
       steps:
-        
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v0'
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
 
       - name: checkout codebase
         uses: actions/checkout@v3
@@ -41,6 +36,11 @@ jobs:
             fi
           done
 
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
       - name: generate tar file for app and upload
         id: generate_tar
@@ -52,6 +52,3 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}  # Provide GCP key file as a secret          
 
-
-      - name: Deploy to GCS
-        run: |
