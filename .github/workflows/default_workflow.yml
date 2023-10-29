@@ -53,12 +53,6 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}  # Provide GCP key file as a secret          
 
-      - name: generate tar file for app and upload
-        id: get_tar
-        run: |
-              ls *.tar.gz
-        shell: bash
-
       
     
       - id: 'upload-file'
@@ -67,4 +61,3 @@ jobs:
           path: './staging'
           destination: 'udb_app_artifacts/'
 
-          
