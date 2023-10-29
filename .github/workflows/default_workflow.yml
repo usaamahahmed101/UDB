@@ -26,8 +26,8 @@ jobs:
       - name: get changed files
         id: getfile
         run: |
-          diff_files=(git diff --no-commit-id --name-only application)
-          echo ${diff_files}
+          diff_files=(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          echo $diff_files
 
 
 
