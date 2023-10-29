@@ -45,8 +45,10 @@ jobs:
       - name: generate tar file for app and upload
         id: generate_tar
         run: |
+            mkdir staging
             tar_file=app_artifact_$(date +'%Y%m%d_%H%M').tar.gz
-            tar -czvf "$tar_file" application/
+            tar -czvf "$tar_file" application/ 
+            mv "$tar_file" staging/
         shell: bash
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}  # Provide GCP key file as a secret          
@@ -62,5 +64,5 @@ jobs:
       - id: 'upload-file'
         uses: 'google-github-actions/upload-cloud-storage@v1'
         with:
-          path: './${{ steps.get_tar.outputs.stdout }}'
-          destination: 'udb_app_artifacts/${{ steps.get_tar.outputs.stdout }}'
+          path: './staging'
+          destination: 'udb_app_artifacts/'
