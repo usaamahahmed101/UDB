@@ -30,6 +30,7 @@ jobs:
           for each_file in $changed_files;do
             if [[ "$each_file" == *"application"* ]]; then
               echo "$each_file"
+            fi
           done
 
 
