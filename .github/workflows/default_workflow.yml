@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker:
-      name: Docker Build/Push
+      name: Python Package for App deployment
       runs-on: ubuntu-latest
       timeout-minutes: 20
       defaults:
@@ -23,18 +23,29 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v34
 
-      - name: declare variables for branch
-        id: vars
-        shell: bash
+      - name: Check for changes
+        id: check-changed-files
         run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      
-      - name: variable values
-        run: |
-          echo "Sha: ${{ steps.vars.outputs.sha_short }}"
-          
-      - name: list all changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
-          done
+          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+
+          if echo "$changed_files" | grep -q 'app/'; then
+            pwd
+            ls -ltrh
+            echo "Changes detected in specific-directory"
+            echo "$changed_files"
+          else
+            echo "No changes detected in specific-directory"
+          fi
+
+      # - name: Tar the directory
+      #   run: |
+
+      #     tar -czvf $app_artifact_$(date +'%Y%m%d_%H%M').tar.gz specific-directory
+      #   shell: bash
+  
+      # - name: Deploy to GCS
+      #   run: |
+      #     unique_dir=$(cat unique_dir.txt)
+      #     gsutil cp $unique_dir.tar.gz gs://your-gcs-bucket/$unique_dir.tar.gz
+      #   env:
+      #     GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_KEY_FILE }}  # Provide GCP key file as a secret          
