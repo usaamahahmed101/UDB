@@ -56,5 +56,5 @@ jobs:
       - id: 'upload-file'
         uses: 'google-github-actions/upload-cloud-storage@v1'
         with:
-          path: './${{ steps.generate_tar.outputs.stdout }}'
+          path: '${{ steps.generate_tar.outputs.stdout }}'
           destination: 'udb_app_artifacts/${{ steps.generate_tar.outputs.stdout }}'
