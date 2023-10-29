@@ -3,7 +3,9 @@ PKG_PATH="/home/usaamahahmed"
 USER="usaamahahmed"
 
 #Download artifact for gcs
-gsutil app_artifact_20231029_1858.tar.gz
+gsutil cp gs://${bucket_name}/database/artifacts/mongo_configuration_artifact_${date_format}.zip /tmp/mongo_configuration_artifact_${date_format}.zip
+
+gsutil  cp gs://udb_app_artifacts/staging/ /tmp/.
 
 # Create and configure the api.sh file
 cat <<EOF > $${PKG_PATH}/api.sh
