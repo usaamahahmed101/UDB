@@ -23,17 +23,23 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v34
 
-      - name: Check for changes
-        id: check-changed-files
+      - name: get changed files
+        id: getfile
         run: |
-          changed_files=$(git diff --name-only application)
+          echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | xargs)"
 
-          if echo "$changed_files" | grep 'application/udb'; then
-            echo "Changes detected in application-directory:"
-            echo "$changed_files"
-          else
-            echo "No changes detected in application-directory"
-          fi
+
+      # - name: Check for changes
+      #   id: check-changed-files
+      #   run: |
+      #     changed_files=$(git diff --name-only application)
+
+      #     if echo "$changed_files" | grep 'application/udb'; then
+      #       echo "Changes detected in application-directory:"
+      #       echo "$changed_files"
+      #     else
+      #       echo "No changes detected in application-directory"
+      #     fi
 
       # - name: Tar the directory
       #   run: |
