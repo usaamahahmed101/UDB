@@ -28,9 +28,8 @@ jobs:
         run: |
           changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
           for each_file in $changed_files;do
-            echo "-------------------------"
-            echo ${each_file}
-            echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+            if [[ "$each_file" == *"application"* ]]; then
+              echo "$each_file"
           done
 
 
