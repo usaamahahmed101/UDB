@@ -39,7 +39,11 @@ resource "google_compute_address" "internal_load_balancer_ip" {
   name         = "my-internal-address"
   subnetwork   = google_compute_subnetwork.private.id
   address_type = "INTERNAL"
-  address      = "192.168.1.3"
+}
+
+data "google_compute_address" "internal_load_balancer_ip_data" {
+  depends_on = [ google_compute_address.internal_load_balancer_ip ]
+  name    = "my-internal-address"
 }
 
 # NAT Gateway

@@ -1,27 +1,14 @@
 
-PKG_PATH="/home/usaamahahmed/.miniconda3/lib/python3.9/site-packages"
+PKG_PATH="/home/usaamahahmed"
 USER="usaamahahmed"
 
-cat <<EOF > $${PKG_PATH}/api.py
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)  
-    
-EOF
 
 # Create and configure the api.sh file
 cat <<EOF > $${PKG_PATH}/api.sh
 #!/bin/bash
 source /home/$${USER}/.bashrc
 source /home/$${USER}/.bash_profile
-cd $${PKG_PATH}
+export PYTHONPATH=$${PKG_PATH}/app
 nohup gunicorn -w 4 -b 0.0.0.0:5000 api:app &
 EOF
 
