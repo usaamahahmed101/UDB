@@ -47,8 +47,14 @@ jobs:
         run: |
             tar_file=app_artifact_$(date +'%Y%m%d_%H%M').tar.gz
             tar -czvf "$tar_file" application/
-            gsutil cp "$tar_file" gs://udb_app_artifacts/
+            echo "$tar_file"
         shell: bash
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}  # Provide GCP key file as a secret          
 
+    
+      - id: 'upload-file'
+        uses: 'google-github-actions/upload-cloud-storage@v1'
+        with:
+          path: './${{ steps.generate_tar.outputs.stdout }}'
+          destination: 'udb_app_artifacts/${{ steps.generate_tar.outputs.stdout }}'
