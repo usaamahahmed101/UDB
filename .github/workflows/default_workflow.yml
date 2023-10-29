@@ -30,32 +30,22 @@ jobs:
           for each_file in $changed_files;do
             if [[ "$each_file" == *"application"* ]]; then
               echo "$each_file"
+            else
+              exit 0
             fi
           done
 
 
+      - name: generate tar file for app and upload
+        id: generate_tar
+        run: |
+            tar_file=app_artifact_$(date +'%Y%m%d_%H%M').tar.gz
+            tar -czvf "$tar_file" application/
+            gsutil cp "$tar_file" gs://udb_app_artifacts/
+        shell: bash
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}  # Provide GCP key file as a secret          
 
-      # - name: Check for changes
-      #   id: check-changed-files
-      #   run: |
-      #     changed_files=$(git diff --name-only application)
 
-      #     if echo "$changed_files" | grep 'application/udb'; then
-      #       echo "Changes detected in application-directory:"
-      #       echo "$changed_files"
-      #     else
-      #       echo "No changes detected in application-directory"
-      #     fi
-
-      # - name: Tar the directory
-      #   run: |
-
-      #     tar -czvf $app_artifact_$(date +'%Y%m%d_%H%M').tar.gz specific-directory
-      #   shell: bash
-  
-      # - name: Deploy to GCS
-      #   run: |
-      #     unique_dir=$(cat unique_dir.txt)
-      #     gsutil cp $unique_dir.tar.gz gs://your-gcs-bucket/$unique_dir.tar.gz
-      #   env:
-      #     GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_KEY_FILE }}  # Provide GCP key file as a secret          
+      - name: Deploy to GCS
+        run: |
