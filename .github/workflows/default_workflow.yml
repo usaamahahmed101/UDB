@@ -26,15 +26,13 @@ jobs:
       - name: Check for changes
         id: check-changed-files
         run: |
-          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          changed_files=$(git diff --name-only application)
 
-          if echo "$changed_files" | grep -q 'app/'; then
-            pwd
-            ls -ltrh
-            echo "Changes detected in specific-directory"
+          if echo "$changed_files" | grep 'application/udb'; then
+            echo "Changes detected in application-directory:"
             echo "$changed_files"
           else
-            echo "No changes detected in specific-directory"
+            echo "No changes detected in application-directory"
           fi
 
       # - name: Tar the directory
