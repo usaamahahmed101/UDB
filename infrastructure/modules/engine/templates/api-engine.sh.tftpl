@@ -3,17 +3,17 @@ PKG_PATH="/home/usaamahahmed"
 USER="usaamahahmed"
 
 #Download artifact for gcs
-gsutil cp gs://${bucket_name}/database/artifacts/mongo_configuration_artifact_${date_format}.zip /tmp/mongo_configuration_artifact_${date_format}.zip
 
-gsutil  cp gs://udb_app_artifacts/staging/ /tmp/.
+gsutil  cp gs://udb_app_artifacts/staging/app_artifact_20231029_1943.tar.gz /tmp/.
+tar -xvzf /tmp/app_artifact_20231029_1943.tar.gz -C /home/usaamahahmed/
 
 # Create and configure the api.sh file
-cat <<EOF > $${PKG_PATH}/api.sh
+cat <<EOF > $${PKG_PATH}/application/udb/app/api.sh
 #!/bin/bash
 source /home/$${USER}/.bashrc
 source /home/$${USER}/.bash_profile
-export PYTHONPATH=$${PKG_PATH}/app
-nohup gunicorn -w 4 -b 0.0.0.0:5000 api:app &
+export PYTHONPATH=/home/usaamahahmed/.miniconda3/lib/python3.9/site-packages;
+nohup gunicorn -w 4 -b 0.0.0.0:5000 app:app &
 EOF
 
 # Set ownership and permissions for the API.sh and API.py files
