@@ -16,7 +16,7 @@ locals {
 
 
   templates = {
-  web_server_installation = templatefile("${path.module}/templates/web-engine.sh.tftpl", {})
+  web_server_installation = templatefile("${path.module}/templates/web-engine.sh.tftpl", {interal_lb_address = var.interal_lb_address})
   api_server_installation = templatefile("${path.module}/templates/api-engine.sh.tftpl", {})
   }
 

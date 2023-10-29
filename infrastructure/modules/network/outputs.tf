@@ -7,5 +7,5 @@ output "network_public" {
 }
 
 output "internal_lb_ip" {
-  value = google_compute_address.internal_load_balancer_ip.self_link
+  value = data.google_compute_address.internal_load_balancer_ip_data.address
 }
