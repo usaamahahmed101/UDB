@@ -70,3 +70,6 @@ variable "engine_mig_name" {
   type = string
 }
 
+variable "artifact" {
+  type = string
+}

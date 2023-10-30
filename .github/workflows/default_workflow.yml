@@ -6,8 +6,8 @@ on:
       - feature/**
 
 jobs:
-  docker:
-      name: Docker Build/Push
+  app:
+      name: App Build
       runs-on: ubuntu-latest
       timeout-minutes: 20
       defaults:
@@ -16,6 +16,7 @@ jobs:
 
       steps:
 
+
       - name: checkout codebase
         uses: actions/checkout@v3
 
@@ -23,18 +24,41 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v34
 
-      - name: declare variables for branch
-        id: vars
-        shell: bash
+      - name: get changed files
+        id: getfile
         run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      
-      - name: variable values
-        run: |
-          echo "Sha: ${{ steps.vars.outputs.sha_short }}"
-          
-      - name: list all changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
+          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          for each_file in $changed_files;do
+            if [[ "$each_file" == *"application"* ]]; then
+              echo "$each_file"
+            else
+              exit 0
+            fi
           done
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - name: generate tar file for app and upload
+        id: generate_tar
+        run: |
+            mkdir staging
+            tar_file=app_artifact_$(date +'%Y%m%d_%H%M').tar.gz
+            tar -czvf "$tar_file" application/ 
+            mv "$tar_file" staging/
+        shell: bash
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}  # Provide GCP key file as a secret          
+
+      
+    
+      - id: 'upload-file'
+        uses: 'google-github-actions/upload-cloud-storage@v1'
+        with:
+          path: './staging/'
+          destination: 'udb_app_artifacts/'
+
+
