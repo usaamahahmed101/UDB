@@ -1,24 +1,42 @@
+#!/bin/bash
 
+# Configuration
 PKG_PATH="/home/usaamahahmed"
 USER="usaamahahmed"
+ARTIFACT_PATH="/tmp/app_artifact_20231029_2349.tar.gz"
+GCS_SOURCE="gs://udb_app_artifacts/staging/app_artifact_20231029_2349.tar.gz"
+PYTHON_LIB_PATH="$PKG_PATH/.miniconda3/lib/python3.9/site-packages"
+API_PATH="$PKG_PATH/application/udb/app"
 
-#Download artifact for gcs
+# Download the artifact from Google Cloud Storage (GCS)
+echo "Downloading artifact from GCS..."
+gsutil cp $GCS_SOURCE $ARTIFACT_PATH
 
-gsutil  cp gs://udb_app_artifacts/staging/app_artifact_20231029_1943.tar.gz /tmp/.
-tar -xvzf /tmp/app_artifact_20231029_1943.tar.gz -C /home/usaamahahmed/
+# Extract the artifact to the desired path
+echo "Extracting artifact..."
+tar -xvzf $ARTIFACT_PATH -C $PKG_PATH
 
-# Create and configure the api.sh file
-cat <<EOF > $${PKG_PATH}/application/udb/app/api.sh
+# Create and configure the api.sh script
+echo "Configuring api.sh..."
+cat <<EOF > "$API_PATH/api.sh"
 #!/bin/bash
-source /home/$${USER}/.bashrc
-source /home/$${USER}/.bash_profile
-export PYTHONPATH=/home/usaamahahmed/.miniconda3/lib/python3.9/site-packages;
+source $PKG_PATH/.bashrc
+source $PKG_PATH/.bash_profile
+export PYTHONPATH=$PYTHON_LIB_PATH
 nohup gunicorn -w 4 -b 0.0.0.0:5000 app:app &
 EOF
 
-# Set ownership and permissions for the API.sh and API.py files
-chown -R $${USER}:$${USER} $${PKG_PATH}/api.sh $${PKG_PATH}/api.py
-chmod -R 777 $${PKG_PATH}/api.sh $${PKG_PATH}/api.py
+# Set ownership for the files
+echo "Setting ownership..."
+chown -R $USER:$USER "$API_PATH/api.sh" "$API_PATH/api.py"
 
-# Execute the API.sh script as the user 'usaamahahmed'
-sudo -u $${USER} $${PKG_PATH}/api.sh
+# Set permissions for the files (using more restrictive permissions than 777)
+echo "Setting permissions..."
+chmod 755 "$API_PATH/api.sh"
+chmod 644 "$API_PATH/api.py"
+
+# Execute the api.sh script as the specified user
+echo "Executing api.sh as $USER..."
+su - $USER -c "cd $API_PATH && ./api.sh"
+
+echo "Script completed!"
