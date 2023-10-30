@@ -60,3 +60,7 @@ variable "named_port" {
 variable "interal_lb_address" {
   type = string
 }
+
+variable "artifact" {
+  type = string
+}

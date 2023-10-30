@@ -53,6 +53,7 @@ module "web_engine_config" {
   mig_name = "web-${var.engine_mig_name}"
   named_port = "web"
   engine_type = "web"
+  artifact = var.artifact 
 }
 
 module "api_engine_config" {
@@ -72,4 +73,5 @@ module "api_engine_config" {
   mig_name = "api-${var.engine_mig_name}"
   named_port = "api"
   engine_type = "api"
+  artifact = var.artifact 
 }
