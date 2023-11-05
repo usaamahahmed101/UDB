@@ -37,41 +37,35 @@ module "database_config" {
 }
 
 module "web_engine_config" {
-  source            = "./infrastructure/modules/engine"
-  network_private   = module.network_config.network_private
+  source             = "./infrastructure/modules/engine"
+  engine_type        = "web"
+  network_private    = module.network_config.network_private
   interal_lb_address = module.network_config.internal_lb_ip
-  default_bucket    = var.default_bucket
-  admin_user        = var.admin_user
-  env               = var.env
-  env_owner         = var.env_owner
-  service_account   = var.service_account
-  bastion_ip        = module.bastion_config.bastion_host_ip
-  rgn               = var.rgn
-  instance_name = "web-engine"
-  min_nodes = var.engine_min_nodes
-  max_nodes = var.engine_max_nodes
-  mig_name = "web-${var.engine_mig_name}"
-  named_port = "web"
-  engine_type = "web"
-  artifact = var.artifact 
+  default_bucket     = var.default_bucket
+  admin_user         = var.admin_user
+  env                = var.env
+  env_owner          = var.env_owner
+  service_account    = var.service_account
+  bastion_ip         = module.bastion_config.bastion_host_ip
+  rgn                = var.rgn
+  min_nodes          = var.engine_min_nodes
+  max_nodes          = var.engine_max_nodes
+  artifact           = var.artifact
 }
 
 module "api_engine_config" {
-  source            = "./infrastructure/modules/engine"
-  network_private   = module.network_config.network_private
+  source             = "./infrastructure/modules/engine"
+  engine_type        = "api"
+  network_private    = module.network_config.network_private
   interal_lb_address = module.network_config.internal_lb_ip
-  default_bucket    = var.default_bucket
-  admin_user        = var.admin_user
-  env               = var.env
-  env_owner         = var.env_owner
-  service_account   = var.service_account
-  bastion_ip        = module.bastion_config.bastion_host_ip
-  rgn               = var.rgn
-  instance_name = "api-engine"
-  min_nodes = var.engine_min_nodes
-  max_nodes = var.engine_max_nodes
-  mig_name = "api-${var.engine_mig_name}"
-  named_port = "api"
-  engine_type = "api"
-  artifact = var.artifact 
+  default_bucket     = var.default_bucket
+  admin_user         = var.admin_user
+  env                = var.env
+  env_owner          = var.env_owner
+  service_account    = var.service_account
+  bastion_ip         = module.bastion_config.bastion_host_ip
+  rgn                = var.rgn
+  min_nodes          = var.engine_min_nodes
+  max_nodes          = var.engine_max_nodes
+  artifact           = var.artifact
 }

@@ -23,27 +23,24 @@ resource "google_compute_subnetwork" "public" {
   region        = var.default_network_rgn
 }
 
-
 # Private Subnet  
 resource "google_compute_subnetwork" "private" {
   name          = "private"
   ip_cidr_range = "192.168.1.0/24"
   network       = google_compute_network.mainvpc.id
   region        = var.default_network_rgn
-
-
 }
 
 resource "google_compute_address" "internal_load_balancer_ip" {
-  
+
   name         = "my-internal-address"
   subnetwork   = google_compute_subnetwork.private.id
   address_type = "INTERNAL"
 }
 
 data "google_compute_address" "internal_load_balancer_ip_data" {
-  depends_on = [ google_compute_address.internal_load_balancer_ip ]
-  name    = "my-internal-address"
+  depends_on = [google_compute_address.internal_load_balancer_ip]
+  name       = "my-internal-address"
 }
 
 # NAT Gateway

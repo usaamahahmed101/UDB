@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="main_title" class="site"> 
+        <div id="banner" class="page_banner">
+            <h1> Usaamah Ahmed </h1>
+        </div>
+        <div id="resumeMetada" class="metadata">
+            <p> 
+                <b>Email</b> : {{ personal_information['Email'] }} | <b>Phone </b>: {{ personal_information['Phone']}} | <b>LinkedIn</b> : <a href="{{ personal_information['LinkedIn'] }}" draggable=true> {{ personal_information['LinkedIn'] }} </a>
+            </p>
+            <hr />
+        </div>
+
+        <div id="sumamry" class="professional_summary">
+            <h2> Professional Summary </h2>
+            
+                <ul>
+                    {% for item in professional_summary %}
+                    <p><li> {{ item }} </li></p>
+                    {% endfor %}
+                </ul> 
+            <hr />
+        </div>
+
+        <div id="skills" class="tech" >
+            <h2> Technical Skills & Tools </h2>
+            <p> 
+                {% for key, value in tech_stack.items() %}
+                    <b><u>{{ key }}</b></u> : {{ value}} <br />
+                {% endfor %}
+            </p>
+            <hr />
+        </div>
+
+        <div id="experience" class="work_history">
+            <h2> Work Experience </h2>
+            {% for list_of_works in work_history %}
+                <p>
+                    <b>{{ list_of_works['most_recent_work_info']['title'] }}</b><br />
+                    <i> {{ list_of_works['most_recent_work_info']['company'] }} </i><br />
+                    <i> {{ list_of_works['most_recent_work_info']['location'] }} </i>
+                </p>
+                
+                {% for responsibilities in list_of_works['most_recent_job_desc'] %}
+                <ul>
+                    <li> {{ responsibilities }} </li>
+                </ul>
+                {% endfor %}<br />
+            {% endfor %}
+            <hr />
+
+{% endblock %}

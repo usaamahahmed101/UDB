@@ -3,7 +3,6 @@ resource "google_compute_instance_template" "engine_nodes_template" {
   machine_type = "e2-small"
   tags         = ["engine"]
 
-
   #   // Local SSD disk
   #   scratch_disk {
   #     interface = "SCSI"
@@ -31,7 +30,6 @@ resource "google_compute_instance_template" "engine_nodes_template" {
   metadata_startup_script = templatefile("${path.module}/templates/engine_startup.sh.tftpl", {
     web_server_installation = local.templates.web_server_installation
     api_server_installation = local.templates.api_server_installation
-    engine_type = var.engine_type
+    engine_type             = var.engine_type
   })
-  
 }

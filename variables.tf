@@ -66,10 +66,6 @@ variable "engine_max_nodes" {
   type = string
 }
 
-variable "engine_mig_name" {
-  type = string
-}
-
 variable "artifact" {
   type = string
 }
