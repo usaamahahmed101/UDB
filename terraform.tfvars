@@ -22,9 +22,8 @@ port              = "27018"
 
 ### Engine Configuration
 engine_instance_name = "engine"
-engine_min_nodes = 1
-engine_max_nodes = 5
-engine_mig_name  =  "engine-autoscaler"
+engine_min_nodes     = 1
+engine_max_nodes     = 5
 
 ### API Configuration
 artifact = "app_artifact_20231030_0656.tar.gz"

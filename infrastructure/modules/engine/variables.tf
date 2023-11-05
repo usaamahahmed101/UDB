@@ -6,11 +6,9 @@ variable "default_bucket" {
   type = string
 }
 
-
 variable "admin_user" {
   type = string
 }
-
 
 variable "env" {
   type = string
@@ -28,9 +26,8 @@ variable "bastion_ip" {
   type = string
 }
 
-
 variable "max_nodes" {
-  type = number 
+  type = number
 }
 
 variable "min_nodes" {
@@ -41,19 +38,7 @@ variable "rgn" {
   type = string
 }
 
-variable "instance_name" {
-  type = string
-}
-
-variable "mig_name" {
-  type = string
-}
-
 variable "engine_type" {
-  type = string
-}
-
-variable "named_port" {
   type = string
 }
 

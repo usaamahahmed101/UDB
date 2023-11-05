@@ -21,7 +21,7 @@ resource "google_compute_firewall" "bastion_mongo_firewall" {
   }
   source_ranges = ["192.168.0.0/24"]
   source_tags   = ["bastion"]
-  target_tags   = ["mongo","engine"]
+  target_tags   = ["mongo", "engine"]
 }
 
 resource "google_compute_firewall" "engine_firewall" {
@@ -30,7 +30,7 @@ resource "google_compute_firewall" "engine_firewall" {
 
   allow {
     protocol = "tcp"
-    ports    = ["22","80","5000"]
+    ports    = ["22", "80", "5000"]
   }
   source_ranges = ["192.168.1.0/24"]
   target_tags   = ["engine"]
@@ -43,7 +43,7 @@ resource "google_compute_firewall" "default" {
   source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]
   allow {
     protocol = "tcp"
-    ports    = ["80","5000"]
+    ports    = ["80", "5000"]
   }
   target_tags = ["engine"]
 }

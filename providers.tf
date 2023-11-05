@@ -17,5 +17,5 @@ terraform {
 
 provider "google" {
   project = "devops-361723"
-  region = "us-central1"
+  region  = "us-central1"
 }
