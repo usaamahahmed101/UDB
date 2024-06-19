@@ -387,7 +387,7 @@ export interface ApiPostPost extends Schema.CollectionType {
         'plugin::ckeditor.CKEditor',
         {
           output: 'HTML';
-          preset: 'light';
+          preset: 'standard';
         }
       >;
     slug: Attribute.String & Attribute.Required & Attribute.Unique;
