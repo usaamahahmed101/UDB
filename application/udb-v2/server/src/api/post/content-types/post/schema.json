@@ -43,6 +43,12 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "posts"
     }
   }
 }
