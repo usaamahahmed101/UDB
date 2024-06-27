@@ -1,0 +1,69 @@
+/* ========= Forms Styles ========= */
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  transition: 0.3s;
+}
+
+input[type='text'],
+input[type='search'],
+input[type='password'],
+input[type='email'],
+input[type='number'],
+input[type='tel'],
+textarea {
+  font-size: 16px;
+  font-weight: 400;
+  height: auto;
+  line-height: 28px;
+  background: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 0 15px;
+  outline: none;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-body);
+
+  &:focus {
+    border-color: var(--color-primary) !important;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+  input {
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius);
+    height: 50px;
+    font-size: 16px;
+    @extend %transition;
+    padding: 0 15px;
+
+    &:focus {
+      border-color: var(--color-primary);
+    }
+  }
+
+  textarea {
+    min-height: 193px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius);
+    resize: none;
+    padding: 15px;
+    font-size: 16px;
+    @extend %transition;
+
+    &:focus {
+      border-color: var(--color-primary);
+    }
+  }
+}

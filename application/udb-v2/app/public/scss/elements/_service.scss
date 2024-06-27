@@ -1,0 +1,249 @@
+/*--------------------
+    Convice Slider Styles  
+----------------------*/
+.service {
+  &.service__style--1 {
+    padding-bottom: 55px;
+    transition: transform 0.65s cubic-bezier(0.05, 0.2, 0.1, 1),
+      box-shadow 0.65s cubic-bezier(0.05, 0.2, 0.1, 1);
+    position: relative;
+    z-index: 2;
+
+    @media #{$laptop-device} {
+      padding: 30px 28px;
+    }
+
+    @media #{$lg-layout} {
+      padding: 30px 20px;
+    }
+
+    @media #{$md-layout} {
+      padding: 30px 25px;
+    }
+
+    @media #{$sm-layout} {
+      padding: 30px 14px;
+    }
+
+    .icon {
+      @extend %transition;
+      font-size: 45px;
+      font-weight: 400;
+      margin-bottom: 24px;
+      color: var(--color-primary);
+      text-align: center;
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+
+      @media #{$lg-layout} {
+        margin-bottom: 11px;
+      }
+
+      @media #{$md-layout} {
+        margin-bottom: 11px;
+      }
+
+      i {
+        stroke-width: 1 !important;
+        font-size: 45px;
+      }
+    }
+
+    .content {
+      .title {
+        margin-bottom: 19px;
+        @extend %transition;
+
+        @media #{$lg-layout} {
+          font-size: var(--h5);
+          margin-bottom: 8px;
+        }
+
+        @media #{$md-layout} {
+          margin-bottom: 8px;
+        }
+
+        a {
+          color: inherit;
+          @extend %transition;
+
+          &:hover {
+            color: var(--color-primary);
+          }
+        }
+      }
+
+      p {
+        @extend %transition;
+
+        @media #{$lg-layout} {
+          font-size: var(--font-size-b2);
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    &.rbt-border-none {
+      border: none;
+    }
+
+    &.rbt-border {
+      border: 1px solid var(--color-border);
+    }
+
+    &.text-left,
+    &.text-start {
+      padding: 50px;
+
+      @media #{$laptop-device} {
+        padding: 40px 30px;
+      }
+
+      @media #{$lg-layout} {
+        padding: 40px 30px;
+      }
+
+      @media #{$md-layout} {
+        padding: 40px 30px;
+      }
+
+      @media #{$sm-layout} {
+        padding: 30px 20px;
+      }
+
+      .icon {
+        justify-content: left;
+      }
+    }
+
+    &.udb-style {
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .title {
+          max-width: 300px;
+          margin-bottom: 12px;
+          text-align: center;
+        }
+
+        .description {
+          max-width: 405px;
+          color: var(--color-link);
+        }
+      }
+    }
+  }
+}
+
+.convice-slider {
+  .inner {
+    padding: 40px 30px 54px;
+  }
+
+  .icon {
+    margin-bottom: 24px;
+    height: 48px;
+    width: 48px;
+    border-radius: 100%;
+    i {
+      font-weight: 400;
+      font-size: 25px;
+      color: var(--color-white);
+    }
+  }
+
+  .description {
+    &.centered-shape {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: url(../../images/bg/service-card-bg.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        z-index: -2;
+        opacity: 0.4;
+        transition: 0.4s;
+      }
+
+      &:hover {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &.file-shaped-bg:hover,
+  &.file-shaped-bg.active {
+    box-shadow: none;
+  }
+}
+
+.card-style-default {
+  &.has-bg-shaped {
+    background: none;
+    position: relative;
+    transition: 0.4s;
+
+    .inner {
+      background: transparent;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: none;
+    }
+
+    .bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      z-index: 1;
+      transition: 0.4s;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .bg-hover {
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.4s;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      z-index: 1;
+    }
+
+    &:hover,
+    &.active {
+      .bg-hover {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .bg {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+}

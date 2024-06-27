@@ -1,0 +1,16 @@
+{
+  "name": "UDB",
+  "short_name": "UDB",
+  "display": "standalone",
+  "start_url": "/",
+  "background_color": "#16181e",
+  "theme_color": "#cd99ff",
+  "description": "UDB",
+  "icons": [
+    {
+      "src": "./images/logo/manifest-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

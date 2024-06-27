@@ -1,0 +1,31 @@
+/*------------------------------
+    Blog Details 
+----------------------------------*/
+.rainbow-blog-details-area {
+  padding: 40px 20px !important;
+  background: var(--color-blackest);
+  border-radius: var(--radius);
+}
+
+.blog-details-content {
+  a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    &:hover {
+      color: var(--color-secondary);
+      transition: all 0.3s linear;
+    }
+
+    transition: all 0.3s linear;
+  }
+
+  pre {
+    background-color: var(--color-bg);
+  }
+}
+
+.rainbow-blog-section {
+  position: relative;
+  z-index: 1;
+}

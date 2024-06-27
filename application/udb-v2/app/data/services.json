@@ -1,0 +1,125 @@
+{
+  "// __comment__": " Icons can be tajen from https://fontawesome.com/icons",
+  "services": [
+    {
+      "id": "cloud-migration",
+      "title": "Effortless Cloud Migration: Seamlessly Transition Your Infrastructure",
+      "img": "/images/icons/service-draft.jpg",
+      "text": "Cloud Migration",
+      "iconName": "cloud-bolt",
+      "isSelect": false,
+      "subItem": [
+        {
+          "text": "Assessment"
+        },
+        {
+          "text": "Data Transfer"
+        },
+        {
+          "text": "Migration"
+        },
+        {
+          "text": "Optimaization"
+        },
+        {
+          "text": "Support"
+        }
+      ]
+    },
+    {
+      "id": "infrastructure-management",
+      "title": "Expert Cloud Infrastructure Management: Optimize Performance and Security.",
+      "img": "/images/icons/service-draft.jpg",
+      "text": "Infrastructure Management",
+      "iconName": "industry-windows",
+      "isSelect": true,
+      "subItem": [
+        {
+          "text": "Performance Monitoring"
+        },
+        {
+          "text": "Security"
+        },
+        {
+          "text": "Cost Control"
+        },
+        {
+          "text": "Scaling"
+        },
+        {
+          "text": "Compliance"
+        }
+      ]
+    },
+    {
+      "id": "cloud-security",
+      "title": "Comprehensive Cloud Security: Safeguard Your Cloud Assets.",
+      "img": "/images/icons/service-draft.jpg",
+      "text": "Cloud Security",
+      "iconName": "shield-check",
+      "isSelect": false,
+      "subItem": [
+        {
+          "text": "Threat Detection"
+        },
+        {
+          "text": "Encryption"
+        },
+        {
+          "text": "Access Management"
+        },
+        {
+          "text": "Audits"
+        },
+        {
+          "text": "Incident Response"
+        }
+      ]
+    },
+    {
+      "id": "devops-automation",
+      "title": "Streamlined DevOps and Automation: Enhance Your Development Cycles",
+      "img": "/images/icons/service-draft.jpg",
+      "text": "DevOps & Automation",
+      "iconName": "wand-sparkles",
+      "isSelect": false,
+      "subItem": [
+        {
+          "text": "CI/CD"
+        },
+        {
+          "text": "Infra as Code"
+        },
+        {
+          "text": "Config Management"
+        },
+        {
+          "text": "Monitoring"
+        },
+        { "text": "Testing" }
+      ]
+    },
+    {
+      "id": "cost-optimization",
+      "title": "Effective Cloud Cost Optimization: Maximize Value and Efficiency.",
+      "img": "/images/icons/service-draft.jpg",
+      "text": "Cost Optimization",
+      "iconName": "piggy-bank",
+      "isSelect": false,
+      "subItem": [
+        {
+          "text": "Usage Analysis"
+        },
+        {
+          "text": "Right-Sizing"
+        },
+        {
+          "text": "Savings-Plans"
+        },
+        {
+          "text": "Variational Autoencoders"
+        }
+      ]
+    }
+  ]
+}

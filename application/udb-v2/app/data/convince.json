@@ -1,0 +1,52 @@
+{
+  "// __comment__": " Icons can be tajen from https://fontawesome.com/icons",
+  "slider": [
+    {
+      "iconName": "cloud",
+      "title": "Simple Service Utilization",
+      "desc": "Thanks to cloud solutions, useful services such as CDNs, DDoS protection, WAFs and DevOps tools can be integrated more easily. Many cloud hosting providers offer these services as an all-in-one package."
+    },
+    {
+      "iconName": "eyes",
+      "title": "Creating Transparency",
+      "desc": "Keep track of what is happening in your cloud environment at all times. A direct line to our IT professionals enables close monitoring and  permanent optimisation according to your individual needs."
+    },
+    {
+      "iconName": "gauge-max",
+      "title": "Speeding up Processes",
+      "desc": "DevOps, i.e. the close networking of developers and operational IT staff, accelerates the provision of new services. Cloud solutions offer many advantages that make it easier for your development and IT team to adhere to DevOps principles."
+    },
+    {
+      "iconName": "lightbulb",
+      "title": "Driving Innovation",
+      "desc": "Are you planning projects in the fields of big data, machine learning, analytics or IoT? Data management in the cloud simplifies the integration of different data sources and makes it easy to handle large amounts of data for fast real-time analysis."
+    },
+    {
+      "iconName": "sack-dollar",
+      "title": "Increasing Cost Efficiency",
+      "desc": "Benefit from an optimal cost-benefit ratio thanks to dynamic adaptation of your cloud infrastructure. Our cloud service management takes care of ramping up and reserving resources as required."
+    },
+    {
+      "iconName": "bolt-lightning",
+      "title": "Promoting Agile IT",
+      "desc": "If required, cloud services and infrastructures can be provided, configured and switched off again at very short notice. This also helps your agile development team."
+    }
+  ],
+  "why": [
+    {
+      "img": "/images/icons/trust.png",
+      "title": "Trusted Expertise",
+      "desc": "With deep expertise in cloud technologies, We offer reliable solutions tailored to your needs."
+    },
+    {
+      "img": "/images/icons/care.png",
+      "title": "Personalized Approach",
+      "desc": "We provide customized cloud strategies that fit your unique business goals and challenges."
+    },
+    {
+      "img": "/images/icons/support.png",
+      "title": "Dedicated Support",
+      "desc": "Count on dedicated support for seamless cloud integration and ongoing success."
+    }
+  ]
+}

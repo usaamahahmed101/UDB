@@ -1,0 +1,24 @@
+{
+  "name": "ubd-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@formspree/react": "^2.5.1",
+    "bootstrap": "^5.3.3",
+    "dayjs": "^1.11.11",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-slick": "^0.29.0",
+    "sal.js": "^0.8.5",
+    "sass": "^1.71.1",
+    "sharp": "^0.33.4",
+    "slick-carousel": "^1.8.1"
+  }
+}
