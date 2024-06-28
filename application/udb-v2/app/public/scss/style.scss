@@ -1,0 +1,35 @@
+@import 'default/variables';
+@import 'default/mixins';
+@import 'default/reset';
+@import 'default/typography';
+@import 'default/extend';
+@import 'default/animations';
+@import 'default/shortcode';
+@import 'default/spacing';
+@import 'default/common';
+@import 'default/forms';
+
+@import 'color/themebg';
+
+@import 'header/header';
+@import 'header/mobilemenu';
+
+@import 'elements/breadcrumb';
+@import 'elements/sectiontitle';
+@import 'elements/button';
+@import 'elements/service';
+@import 'elements/slickslide';
+@import 'elements/call-to-action';
+@import 'elements/tab';
+@import 'elements/contact';
+@import 'elements/contact-form';
+@import 'elements/backto-top';
+@import 'elements/footer';
+@import 'elements/team';
+
+@import 'blog/blog';
+@import 'blog/sidebar';
+@import 'blog/blog-details';
+
+@import 'elements/banner';
+@import 'elements/showcase';

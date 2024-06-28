@@ -1,0 +1,24 @@
+{
+  "nav": [
+    {
+      "link": "/",
+      "text": "Home"
+    },
+    {
+      "link": "/consultation",
+      "text": "Consultation"
+    },
+    {
+      "link": "/about",
+      "text": "About Us"
+    },
+    {
+      "link": "/contact",
+      "text": "Contact Us"
+    },
+    {
+      "link": "/blog",
+      "text": "Blog"
+    }
+  ]
+}

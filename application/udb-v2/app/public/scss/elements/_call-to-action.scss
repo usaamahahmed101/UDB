@@ -1,0 +1,149 @@
+.udb-cta {
+  position: relative;
+
+  &::before {
+    content: '';
+    background: url(../../images/cta/border-gradient.png) no-repeat;
+    position: absolute;
+    left: -25%;
+    top: -90%;
+    height: 900px;
+    width: 100%;
+    z-index: -1;
+
+    @media #{$smlg-device} {
+      display: none;
+    }
+  }
+
+  .inner {
+    background: url(../../images/cta/bg-folder-img.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+    position: relative;
+
+    @media #{$smlg-device} {
+      background: none;
+      flex-wrap: wrap;
+    }
+
+    .bg-shape-one {
+      position: absolute;
+      bottom: 0;
+      left: 60%;
+      transform: translateX(-50%);
+
+      @media #{$smlg-device} {
+        display: none;
+      }
+    }
+  }
+
+  .bg-shape-inside {
+    position: absolute;
+    top: -80%;
+    left: -25%;
+    z-index: -2;
+
+    img {
+      object-fit: contain;
+    }
+
+    @media #{$sm-layout} {
+      display: none;
+    }
+  }
+
+  .content-left {
+    padding: 95px 50px;
+    padding-right: 0;
+    position: relative;
+
+    @media #{$smlg-device} {
+      padding: 0;
+    }
+
+    .description {
+      color: var(--color-link);
+    }
+  }
+}
+
+img {
+  transition: 0.3s;
+}
+
+.rainbow-rn-cta {
+  .content-wrapper {
+    padding: 68px 80px 60px;
+    background: var(--color-primary);
+    border-radius: 12px;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+
+    @media #{$md-layout} {
+      padding: 30px 40px;
+    }
+
+    @media #{$sm-layout} {
+      padding: 30px;
+    }
+
+    p {
+      max-width: 590px;
+      color: var(--color-heading);
+    }
+
+    .bg-shape {
+      position: absolute;
+      top: 50%;
+      left: 60%;
+      transform: translate(-50%, -50%);
+      max-width: 368px;
+      height: auto;
+      z-index: 0;
+
+      @media #{$sm-layout} {
+        display: none;
+      }
+    }
+
+    .inner,
+    .content,
+    .btn-default {
+      position: relative;
+      z-index: 2;
+
+      @media #{$sm-layout} {
+        text-align: center;
+      }
+    }
+
+    .right-content {
+      text-align: right;
+
+      @media #{$sm-layout} {
+        text-align: center;
+      }
+
+      .call-to-btn {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .team-image {
+        margin-bottom: 24px;
+
+        @media #{$sm-layout} {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+}
